@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class WWCC_Consent {
+class KCC_Consent {
 
   public function __construct() {
     add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
@@ -16,29 +16,29 @@ class WWCC_Consent {
       return;
     }
 
-    $settings = wwcc_get_settings();
+    $settings = kcc_get_settings();
 
     wp_enqueue_style(
-      'wwcc-consent',
-      WWCC_PLUGIN_URL . 'assets/consent.css',
+      'kcc-consent',
+      KCC_PLUGIN_URL . 'assets/consent.css',
       array(),
-      WWCC_VERSION
+      KCC_VERSION
     );
 
     wp_enqueue_script(
-      'wwcc-consent',
-      WWCC_PLUGIN_URL . 'assets/consent.js',
+      'kcc-consent',
+      KCC_PLUGIN_URL . 'assets/consent.js',
       array(),
-      WWCC_VERSION,
+      KCC_VERSION,
       true
     );
 
     $css_vars = sprintf(
-      ':root{--wwcc-primary:%s;--wwcc-primary-hover:%s;--wwcc-primary-text:#fff;}',
+      ':root{--kcc-primary:%s;--kcc-primary-hover:%s;--kcc-primary-text:#fff;}',
       esc_attr($settings['primary_color']),
       esc_attr($this->darken_color($settings['primary_color'], 15))
     );
-    wp_add_inline_style('wwcc-consent', $css_vars);
+    wp_add_inline_style('kcc-consent', $css_vars);
   }
 
   public function render_banner() {
@@ -46,22 +46,22 @@ class WWCC_Consent {
       return;
     }
 
-    $settings = wwcc_get_settings();
-    $cookies = wwcc_get_cookies();
+    $settings = kcc_get_settings();
+    $cookies = kcc_get_cookies();
     $style = esc_attr($settings['banner_style']);
 
     $categories = array(
-      'necessary'   => __('Necessary', 'ww-cookie-consent'),
-      'analytics'   => __('Analytics', 'ww-cookie-consent'),
-      'marketing'   => __('Marketing', 'ww-cookie-consent'),
-      'preferences' => __('Preferences', 'ww-cookie-consent'),
+      'necessary'   => __('Necessary', 'kansleri-cookie-consent'),
+      'analytics'   => __('Analytics', 'kansleri-cookie-consent'),
+      'marketing'   => __('Marketing', 'kansleri-cookie-consent'),
+      'preferences' => __('Preferences', 'kansleri-cookie-consent'),
     );
 
     $cat_descriptions = array(
-      'necessary'   => __('Required for the website to function. Cannot be disabled.', 'ww-cookie-consent'),
-      'analytics'   => __('Help us understand how visitors interact with the website.', 'ww-cookie-consent'),
-      'marketing'   => __('Used to deliver relevant advertisements and track campaigns.', 'ww-cookie-consent'),
-      'preferences' => __('Remember your settings and preferences for a better experience.', 'ww-cookie-consent'),
+      'necessary'   => __('Required for the website to function. Cannot be disabled.', 'kansleri-cookie-consent'),
+      'analytics'   => __('Help us understand how visitors interact with the website.', 'kansleri-cookie-consent'),
+      'marketing'   => __('Used to deliver relevant advertisements and track campaigns.', 'kansleri-cookie-consent'),
+      'preferences' => __('Remember your settings and preferences for a better experience.', 'kansleri-cookie-consent'),
     );
 
     $policy_link = '';
@@ -72,52 +72,52 @@ class WWCC_Consent {
       }
     }
     ?>
-    <div id="wwcc-banner"
-         class="wwcc-banner wwcc-banner--<?php echo $style; ?>"
+    <div id="kcc-banner"
+         class="kcc-banner kcc-banner--<?php echo $style; ?>"
          role="dialog"
          aria-modal="true"
-         aria-label="<?php esc_attr_e('Cookie consent', 'ww-cookie-consent'); ?>"
+         aria-label="<?php esc_attr_e('Cookie consent', 'kansleri-cookie-consent'); ?>"
          style="display:none;">
 
       <?php if ($style === 'modal') : ?>
-        <div class="wwcc-overlay"></div>
+        <div class="kcc-overlay"></div>
       <?php endif; ?>
 
-      <div class="wwcc-inner">
-        <div class="wwcc-main">
-          <h2 class="wwcc-heading"><?php echo esc_html($settings['heading_text']); ?></h2>
-          <p class="wwcc-desc"><?php echo esc_html($settings['description_text']); ?>
+      <div class="kcc-inner">
+        <div class="kcc-main">
+          <h2 class="kcc-heading"><?php echo esc_html($settings['heading_text']); ?></h2>
+          <p class="kcc-desc"><?php echo esc_html($settings['description_text']); ?>
             <?php if ($policy_link) : ?>
-              <a href="<?php echo esc_url($policy_link); ?>" class="wwcc-policy-link" target="_blank"><?php esc_html_e('Cookie Policy', 'ww-cookie-consent'); ?></a>
+              <a href="<?php echo esc_url($policy_link); ?>" class="kcc-policy-link" target="_blank"><?php esc_html_e('Cookie Policy', 'kansleri-cookie-consent'); ?></a>
             <?php endif; ?>
           </p>
 
-          <div class="wwcc-actions">
-            <button type="button" class="wwcc-btn wwcc-btn--primary" data-wwcc="accept"><?php echo esc_html($settings['accept_text']); ?></button>
-            <button type="button" class="wwcc-btn wwcc-btn--secondary" data-wwcc="reject"><?php echo esc_html($settings['reject_text']); ?></button>
-            <button type="button" class="wwcc-btn wwcc-btn--link" data-wwcc="toggle-details"><?php echo esc_html($settings['customize_text']); ?></button>
+          <div class="kcc-actions">
+            <button type="button" class="kcc-btn kcc-btn--primary" data-kcc="accept"><?php echo esc_html($settings['accept_text']); ?></button>
+            <button type="button" class="kcc-btn kcc-btn--secondary" data-kcc="reject"><?php echo esc_html($settings['reject_text']); ?></button>
+            <button type="button" class="kcc-btn kcc-btn--link" data-kcc="toggle-details"><?php echo esc_html($settings['customize_text']); ?></button>
           </div>
         </div>
 
-        <div class="wwcc-details" style="display:none;">
+        <div class="kcc-details" style="display:none;">
           <?php foreach ($categories as $key => $label) : ?>
-            <div class="wwcc-category">
-              <label class="wwcc-category__label">
+            <div class="kcc-category">
+              <label class="kcc-category__label">
                 <input
                   type="checkbox"
-                  class="wwcc-category__check"
+                  class="kcc-category__check"
                   data-category="<?php echo esc_attr($key); ?>"
                   <?php echo $key === 'necessary' ? 'checked disabled' : ''; ?>
                 />
-                <span class="wwcc-category__toggle"></span>
-                <span class="wwcc-category__name"><?php echo esc_html($label); ?></span>
+                <span class="kcc-category__toggle"></span>
+                <span class="kcc-category__name"><?php echo esc_html($label); ?></span>
               </label>
-              <p class="wwcc-category__desc"><?php echo esc_html($cat_descriptions[$key]); ?></p>
+              <p class="kcc-category__desc"><?php echo esc_html($cat_descriptions[$key]); ?></p>
             </div>
           <?php endforeach; ?>
 
-          <div class="wwcc-details-actions">
-            <button type="button" class="wwcc-btn wwcc-btn--primary" data-wwcc="save"><?php echo esc_html($settings['save_text']); ?></button>
+          <div class="kcc-details-actions">
+            <button type="button" class="kcc-btn kcc-btn--primary" data-kcc="save"><?php echo esc_html($settings['save_text']); ?></button>
           </div>
         </div>
       </div>
@@ -125,10 +125,10 @@ class WWCC_Consent {
 
     <?php if (!empty($settings['show_floating_btn'])) : ?>
       <button type="button"
-              id="wwcc-floating-btn"
-              class="wwcc-floating-btn"
-              aria-label="<?php esc_attr_e('Cookie settings', 'ww-cookie-consent'); ?>"
-              title="<?php esc_attr_e('Cookie settings', 'ww-cookie-consent'); ?>"
+              id="kcc-floating-btn"
+              class="kcc-floating-btn"
+              aria-label="<?php esc_attr_e('Cookie settings', 'kansleri-cookie-consent'); ?>"
+              title="<?php esc_attr_e('Cookie settings', 'kansleri-cookie-consent'); ?>"
               style="display:none;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/>
@@ -141,7 +141,7 @@ class WWCC_Consent {
     <?php endif; ?>
 
     <script>
-      window.wwccConfig = <?php echo wp_json_encode(array(
+      window.kccConfig = <?php echo wp_json_encode(array(
         'consentMode' => !empty($settings['consent_mode']),
       )); ?>;
     </script>

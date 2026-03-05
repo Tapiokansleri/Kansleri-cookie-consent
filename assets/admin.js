@@ -1,16 +1,16 @@
 (function () {
   'use strict';
 
-  var cfg = window.wwccAdmin || {};
+  var cfg = window.kccAdmin || {};
   var ajaxUrl = cfg.ajaxUrl;
   var nonce = cfg.nonce;
   var strings = cfg.strings || {};
 
   function showNotice(msg, type) {
-    var el = document.getElementById('wwcc-notice');
+    var el = document.getElementById('kcc-notice');
     if (!el) return;
     el.textContent = msg;
-    el.className = 'wwcc-notice wwcc-notice--' + (type || 'success');
+    el.className = 'kcc-notice kcc-notice--' + (type || 'success');
     el.style.display = '';
     setTimeout(function () { el.style.display = 'none'; }, 4000);
   }
@@ -23,12 +23,12 @@
   /* ── Settings forms (General, Policy, Integration) ── */
 
   function initSettingsForms() {
-    var forms = document.querySelectorAll('#wwcc-general-form, #wwcc-policy-form, #wwcc-integration-form');
+    var forms = document.querySelectorAll('#kcc-general-form, #kcc-policy-form, #kcc-integration-form');
     forms.forEach(function (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var body = serializeForm(form);
-        body.append('action', 'wwcc_save_settings');
+        body.append('action', 'kcc_save_settings');
         body.append('nonce', nonce);
 
         fetch(ajaxUrl, { method: 'POST', body: body })
@@ -46,10 +46,10 @@
   var cookieIndex = 0;
 
   function initCookiesTab() {
-    var tbody = document.getElementById('wwcc-cookie-tbody');
-    var form = document.getElementById('wwcc-cookies-form');
-    var addBtn = document.getElementById('wwcc-add-cookie-btn');
-    var scanBtn = document.getElementById('wwcc-scan-btn');
+    var tbody = document.getElementById('kcc-cookie-tbody');
+    var form = document.getElementById('kcc-cookies-form');
+    var addBtn = document.getElementById('kcc-add-cookie-btn');
+    var scanBtn = document.getElementById('kcc-scan-btn');
 
     if (!tbody) return;
 
@@ -64,11 +64,11 @@
     }
 
     tbody.addEventListener('click', function (e) {
-      if (e.target.classList.contains('wwcc-remove-cookie')) {
+      if (e.target.classList.contains('kcc-remove-cookie')) {
         var row = e.target.closest('tr');
         if (row) row.remove();
         if (!tbody.querySelector('tr[data-index]')) {
-          tbody.innerHTML = '<tr class="wwcc-no-cookies"><td colspan="6">No cookies registered yet.</td></tr>';
+          tbody.innerHTML = '<tr class="kcc-no-cookies"><td colspan="6">No cookies registered yet.</td></tr>';
         }
       }
     });
@@ -77,7 +77,7 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var body = serializeForm(form);
-        body.append('action', 'wwcc_save_cookies');
+        body.append('action', 'kcc_save_cookies');
         body.append('nonce', nonce);
 
         fetch(ajaxUrl, { method: 'POST', body: body })
@@ -95,7 +95,7 @@
   }
 
   function addRow(tbody, name, category, provider, duration, description) {
-    var noRow = tbody.querySelector('.wwcc-no-cookies');
+    var noRow = tbody.querySelector('.kcc-no-cookies');
     if (noRow) noRow.remove();
 
     var i = cookieIndex++;
@@ -115,7 +115,7 @@
       '<td><input type="text" name="cookies[' + i + '][provider]" value="' + esc(provider) + '" /></td>' +
       '<td><input type="text" name="cookies[' + i + '][duration]" value="' + esc(duration) + '" style="width:100px;" /></td>' +
       '<td><input type="text" name="cookies[' + i + '][description]" value="' + esc(description) + '" class="large-text" /></td>' +
-      '<td><button type="button" class="button wwcc-remove-cookie" title="Remove">&times;</button></td>';
+      '<td><button type="button" class="button kcc-remove-cookie" title="Remove">&times;</button></td>';
 
     tbody.appendChild(tr);
   }
@@ -123,11 +123,11 @@
   /* ── Cookie Scanner ── */
 
   function runScan(tbody) {
-    var resultsEl = document.getElementById('wwcc-scan-results');
-    var iframe = document.getElementById('wwcc-scan-iframe');
+    var resultsEl = document.getElementById('kcc-scan-results');
+    var iframe = document.getElementById('kcc-scan-iframe');
     if (!resultsEl || !iframe) return;
 
-    resultsEl.innerHTML = '<span class="wwcc-scan-spinner"></span> ' + strings.scanning;
+    resultsEl.innerHTML = '<span class="kcc-scan-spinner"></span> ' + strings.scanning;
     resultsEl.style.display = '';
 
     iframe.src = cfg.homeUrl;
@@ -164,7 +164,7 @@
       }
 
       var body = new URLSearchParams();
-      body.append('action', 'wwcc_process_scan');
+      body.append('action', 'kcc_process_scan');
       body.append('nonce', nonce);
       found.forEach(function (n) { body.append('found[]', n); });
 
@@ -194,36 +194,36 @@
           var providerKeys = Object.keys(groups).sort();
           providerKeys.forEach(function (provider) {
             var items = groups[provider];
-            html += '<div class="wwcc-scan-group">';
-            html += '<div class="wwcc-scan-group__header">';
-            html += '<strong>' + provider + '</strong> <span class="wwcc-scan-group__count">(' + items.length + ')</span> ';
-            html += '<button type="button" class="button button-small wwcc-add-group" data-provider="' + provider + '">Add all</button>';
+            html += '<div class="kcc-scan-group">';
+            html += '<div class="kcc-scan-group__header">';
+            html += '<strong>' + provider + '</strong> <span class="kcc-scan-group__count">(' + items.length + ')</span> ';
+            html += '<button type="button" class="button button-small kcc-add-group" data-provider="' + provider + '">Add all</button>';
             html += '</div>';
-            html += '<table class="wwcc-scan-group__table"><tbody>';
+            html += '<table class="kcc-scan-group__table"><tbody>';
             items.forEach(function (c) {
               html += '<tr data-cookie=\'' + JSON.stringify(c).replace(/'/g, '&#39;') + '\'>';
               html += '<td><code>' + c.name + '</code></td>';
-              html += '<td class="wwcc-scan-cat wwcc-scan-cat--' + c.category + '">' + c.category + '</td>';
-              html += '<td class="wwcc-scan-desc">' + c.description + '</td>';
-              html += '<td><button type="button" class="button button-small wwcc-add-scanned">Add</button></td>';
+              html += '<td class="kcc-scan-cat kcc-scan-cat--' + c.category + '">' + c.category + '</td>';
+              html += '<td class="kcc-scan-desc">' + c.description + '</td>';
+              html += '<td><button type="button" class="button button-small kcc-add-scanned">Add</button></td>';
               html += '</tr>';
             });
             html += '</tbody></table></div>';
           });
 
           if (unknown.length) {
-            html += '<div class="wwcc-scan-group">';
-            html += '<div class="wwcc-scan-group__header">';
-            html += '<strong>Unknown</strong> <span class="wwcc-scan-group__count">(' + unknown.length + ')</span> ';
-            html += '<button type="button" class="button button-small wwcc-add-group" data-provider="__unknown">Add all</button>';
+            html += '<div class="kcc-scan-group">';
+            html += '<div class="kcc-scan-group__header">';
+            html += '<strong>Unknown</strong> <span class="kcc-scan-group__count">(' + unknown.length + ')</span> ';
+            html += '<button type="button" class="button button-small kcc-add-group" data-provider="__unknown">Add all</button>';
             html += '</div>';
-            html += '<table class="wwcc-scan-group__table"><tbody>';
+            html += '<table class="kcc-scan-group__table"><tbody>';
             unknown.forEach(function (c) {
               html += '<tr data-cookie=\'' + JSON.stringify(c).replace(/'/g, '&#39;') + '\'>';
               html += '<td><code>' + c.name + '</code></td>';
-              html += '<td class="wwcc-scan-cat">—</td>';
-              html += '<td class="wwcc-scan-desc">Not identified</td>';
-              html += '<td><button type="button" class="button button-small wwcc-add-scanned">Add</button></td>';
+              html += '<td class="kcc-scan-cat">—</td>';
+              html += '<td class="kcc-scan-desc">Not identified</td>';
+              html += '<td><button type="button" class="button button-small kcc-add-scanned">Add</button></td>';
               html += '</tr>';
             });
             html += '</tbody></table></div>';
@@ -232,7 +232,7 @@
           resultsEl.innerHTML = html;
 
           resultsEl.addEventListener('click', function (e) {
-            if (e.target.classList.contains('wwcc-add-scanned')) {
+            if (e.target.classList.contains('kcc-add-scanned')) {
               var row = e.target.closest('tr');
               if (!row) return;
               var c = JSON.parse(row.getAttribute('data-cookie'));
@@ -241,12 +241,12 @@
               e.target.textContent = 'Added';
             }
 
-            if (e.target.classList.contains('wwcc-add-group')) {
-              var group = e.target.closest('.wwcc-scan-group');
+            if (e.target.classList.contains('kcc-add-group')) {
+              var group = e.target.closest('.kcc-scan-group');
               if (!group) return;
               var rows = group.querySelectorAll('tr[data-cookie]');
               rows.forEach(function (row) {
-                var btn = row.querySelector('.wwcc-add-scanned');
+                var btn = row.querySelector('.kcc-add-scanned');
                 if (btn && !btn.disabled) {
                   var c = JSON.parse(row.getAttribute('data-cookie'));
                   addRow(tbody, c.name, c.category, c.provider, c.duration, c.description);

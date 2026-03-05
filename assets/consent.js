@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var COOKIE_NAME = 'ww_consent';
+  var COOKIE_NAME = 'kcc_consent';
   var COOKIE_DAYS = 365;
-  var config = window.wwccConfig || {};
+  var config = window.kccConfig || {};
 
   function getConsent() {
     var match = document.cookie.match(new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)'));
@@ -69,7 +69,7 @@
 
   function saveCustom() {
     var consent = { necessary: true };
-    var checks = document.querySelectorAll('.wwcc-category__check');
+    var checks = document.querySelectorAll('.kcc-category__check');
     checks.forEach(function (el) {
       var cat = el.getAttribute('data-category');
       if (cat !== 'necessary') {
@@ -90,7 +90,7 @@
 
       var existing = getConsent();
       if (existing) {
-        var checks = banner.querySelectorAll('.wwcc-category__check');
+        var checks = banner.querySelectorAll('.kcc-category__check');
         checks.forEach(function (el) {
           var cat = el.getAttribute('data-category');
           if (cat !== 'necessary' && existing[cat] !== undefined) {
@@ -128,25 +128,25 @@
     var hidden = details.style.display === 'none';
     details.style.display = hidden ? '' : 'none';
 
-    var btn = banner.querySelector('[data-wwcc="toggle-details"]');
+    var btn = banner.querySelector('[data-kcc="toggle-details"]');
     if (btn) {
       btn.textContent = hidden ? (btn.getAttribute('data-close-text') || btn.textContent) : btn.textContent;
     }
   }
 
   function init() {
-    banner = document.getElementById('wwcc-banner');
-    floatingBtn = document.getElementById('wwcc-floating-btn');
+    banner = document.getElementById('kcc-banner');
+    floatingBtn = document.getElementById('kcc-floating-btn');
 
     if (!banner) return;
 
-    details = banner.querySelector('.wwcc-details');
+    details = banner.querySelector('.kcc-details');
 
     banner.addEventListener('click', function (e) {
-      var target = e.target.closest('[data-wwcc]');
+      var target = e.target.closest('[data-kcc]');
       if (!target) return;
 
-      var action = target.getAttribute('data-wwcc');
+      var action = target.getAttribute('data-kcc');
       switch (action) {
         case 'accept':
           acceptAll();

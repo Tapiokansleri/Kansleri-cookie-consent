@@ -1,27 +1,27 @@
-/* ── WW Cookie Consent Admin ── */
+/* ── Kansleri Cookie Consent Admin ── */
 
-.wwcc-wrap {
+.kcc-wrap {
   max-width: 900px;
 }
 
-.wwcc-tabs {
+.kcc-tabs {
   margin-bottom: 1.5rem;
 }
 
-.wwcc-notice {
+.kcc-notice {
   padding: 10px 14px;
   border-radius: 4px;
   margin: 0 0 1rem;
   font-size: 14px;
 }
 
-.wwcc-notice--success {
+.kcc-notice--success {
   background: #d1fae5;
   color: #065f46;
   border-left: 4px solid #10b981;
 }
 
-.wwcc-notice--error {
+.kcc-notice--error {
   background: #fee2e2;
   color: #991b1b;
   border-left: 4px solid #ef4444;
@@ -29,22 +29,22 @@
 
 /* Cookies tab */
 
-.wwcc-cookies-toolbar {
+.kcc-cookies-toolbar {
   display: flex;
   gap: 8px;
   margin-bottom: 1rem;
 }
 
-.wwcc-cookie-table input[type="text"] {
+.kcc-cookie-table input[type="text"] {
   width: 100%;
   min-width: 60px;
 }
 
-.wwcc-cookie-table select {
+.kcc-cookie-table select {
   width: 100%;
 }
 
-.wwcc-remove-cookie {
+.kcc-remove-cookie {
   color: #dc2626 !important;
   font-size: 18px;
   font-weight: bold;
@@ -54,11 +54,11 @@
   padding: 4px 8px !important;
 }
 
-.wwcc-remove-cookie:hover {
+.kcc-remove-cookie:hover {
   color: #991b1b !important;
 }
 
-.wwcc-no-cookies td {
+.kcc-no-cookies td {
   text-align: center;
   padding: 2rem;
   color: #6b7280;
@@ -67,7 +67,7 @@
 
 /* Scan results */
 
-.wwcc-scan-results {
+.kcc-scan-results {
   background: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
@@ -75,11 +75,11 @@
   margin-bottom: 1rem;
 }
 
-.wwcc-scan-results h4 {
+.kcc-scan-results h4 {
   margin: 0 0 0.75rem;
 }
 
-.wwcc-scan-results code {
+.kcc-scan-results code {
   background: #e5e7eb;
   padding: 2px 6px;
   border-radius: 3px;
@@ -88,7 +88,7 @@
 
 /* Scan result groups */
 
-.wwcc-scan-group {
+.kcc-scan-group {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 6px;
@@ -96,7 +96,7 @@
   overflow: hidden;
 }
 
-.wwcc-scan-group__header {
+.kcc-scan-group__header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -105,82 +105,82 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.wwcc-scan-group__header strong {
+.kcc-scan-group__header strong {
   font-size: 14px;
 }
 
-.wwcc-scan-group__count {
+.kcc-scan-group__count {
   color: #6b7280;
   font-size: 13px;
 }
 
-.wwcc-scan-group__header .button {
+.kcc-scan-group__header .button {
   margin-left: auto;
 }
 
-.wwcc-scan-group__table {
+.kcc-scan-group__table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.wwcc-scan-group__table td {
+.kcc-scan-group__table td {
   padding: 6px 14px;
   border-top: 1px solid #f3f4f6;
   font-size: 13px;
   vertical-align: middle;
 }
 
-.wwcc-scan-group__table tr:first-child td {
+.kcc-scan-group__table tr:first-child td {
   border-top: none;
 }
 
-.wwcc-scan-cat {
+.kcc-scan-cat {
   white-space: nowrap;
   text-transform: capitalize;
   font-weight: 500;
   font-size: 12px;
 }
 
-.wwcc-scan-cat--analytics { color: #2563eb; }
-.wwcc-scan-cat--marketing { color: #dc2626; }
-.wwcc-scan-cat--necessary { color: #059669; }
-.wwcc-scan-cat--preferences { color: #7c3aed; }
+.kcc-scan-cat--analytics { color: #2563eb; }
+.kcc-scan-cat--marketing { color: #dc2626; }
+.kcc-scan-cat--necessary { color: #059669; }
+.kcc-scan-cat--preferences { color: #7c3aed; }
 
-.wwcc-scan-desc {
+.kcc-scan-desc {
   color: #6b7280;
 }
 
-.wwcc-scan-group__table td:last-child {
+.kcc-scan-group__table td:last-child {
   text-align: right;
   white-space: nowrap;
 }
 
-.wwcc-scan-spinner {
+.kcc-scan-spinner {
   display: inline-block;
   width: 16px;
   height: 16px;
   border: 2px solid #d1d5db;
   border-top-color: #3b82f6;
   border-radius: 50%;
-  animation: wwcc-spin 0.6s linear infinite;
+  animation: kcc-spin 0.6s linear infinite;
   vertical-align: middle;
   margin-right: 6px;
 }
 
-@keyframes wwcc-spin {
+@keyframes kcc-spin {
   to { transform: rotate(360deg); }
 }
 
 /* Code preview */
 
-.wwcc-code-preview {
+.kcc-code-preview {
   margin-top: 1.5rem;
   background: #1e293b;
   border-radius: 8px;
   padding: 1.25rem;
 }
 
-.wwcc-code-preview h3 {
+.kcc-code-preview h3 {
   color: #94a3b8;
   font-size: 13px;
   margin: 0 0 0.75rem;
@@ -189,12 +189,12 @@
   letter-spacing: 0.05em;
 }
 
-.wwcc-code-preview pre {
+.kcc-code-preview pre {
   margin: 0;
   overflow-x: auto;
 }
 
-.wwcc-code-preview code {
+.kcc-code-preview code {
   color: #e2e8f0;
   font-size: 13px;
   line-height: 1.6;

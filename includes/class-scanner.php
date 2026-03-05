@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class WWCC_Scanner {
+class KCC_Scanner {
 
   public function __construct() {
-    add_action('wp_ajax_wwcc_process_scan', array($this, 'process_scan'));
+    add_action('wp_ajax_kcc_process_scan', array($this, 'process_scan'));
   }
 
   /**
@@ -75,7 +75,7 @@ class WWCC_Scanner {
       array('pattern' => '/^_hj/', 'provider' => 'Hotjar', 'category' => 'analytics', 'duration' => 'Varies', 'description' => 'Hotjar: tracks user behaviour and feedback.'),
 
       // Consent cookie itself
-      array('pattern' => '/^ww_consent$/', 'provider' => 'WW Cookie Consent', 'category' => 'necessary', 'duration' => '1 year', 'description' => 'Stores your cookie consent preferences.'),
+      array('pattern' => '/^kcc_consent$/', 'provider' => 'Kansleri Cookie Consent', 'category' => 'necessary', 'duration' => '1 year', 'description' => 'Stores your cookie consent preferences.'),
     );
   }
 
@@ -94,14 +94,14 @@ class WWCC_Scanner {
   }
 
   public function process_scan() {
-    check_ajax_referer('wwcc_admin', 'nonce');
+    check_ajax_referer('kcc_admin', 'nonce');
 
     if (!current_user_can('manage_options')) {
       wp_send_json_error('Unauthorized');
     }
 
     $found = isset($_POST['found']) ? array_map('sanitize_text_field', wp_unslash($_POST['found'])) : array();
-    $existing = wwcc_get_cookies();
+    $existing = kcc_get_cookies();
 
     $known_names = array();
     foreach ($existing as $c) {

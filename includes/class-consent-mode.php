@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class WWCC_Consent_Mode {
+class KCC_Consent_Mode {
 
   public function __construct() {
-    $settings = wwcc_get_settings();
+    $settings = kcc_get_settings();
     if (!empty($settings['consent_mode'])) {
       add_action('wp_head', array($this, 'output_defaults'), 1);
     }
@@ -35,7 +35,7 @@ gtag('consent','default',{
   wait_for_update:500
 });
 (function(){
-  var m=document.cookie.match(/(?:^|; )ww_consent=([^;]*)/);
+  var m=document.cookie.match(/(?:^|; )kcc_consent=([^;]*)/);
   if(!m)return;
   try{var c=JSON.parse(decodeURIComponent(m[1]));
     gtag('consent','update',{
