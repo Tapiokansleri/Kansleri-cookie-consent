@@ -1,0 +1,12 @@
+<wpml-config>
+  <admin-texts>
+    <key name="kcc_settings">
+      <key name="heading_text" />
+      <key name="description_text" />
+      <key name="accept_text" />
+      <key name="reject_text" />
+      <key name="customize_text" />
+      <key name="save_text" />
+    </key>
+  </admin-texts>
+</wpml-config>

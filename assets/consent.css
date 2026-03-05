@@ -1,0 +1,597 @@
+/* ── Kansleri Cookie Consent Banner ── */
+
+.kcc-banner {
+  position: fixed;
+  z-index: 999999;
+  box-sizing: border-box;
+}
+
+.kcc-banner *, .kcc-banner *::before, .kcc-banner *::after {
+  box-sizing: border-box;
+}
+
+.kcc-typography--plugin {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #1f2937 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  text-transform: none !important;
+  font-style: normal !important;
+  text-indent: 0 !important;
+}
+
+.kcc-banner.kcc-typography--plugin *,
+.kcc-policy.kcc-typography--plugin * {
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  text-transform: none !important;
+  font-style: normal !important;
+  text-indent: 0 !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-heading {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  line-height: 1.3 !important;
+  color: #1f2937 !important;
+  margin: 0 0 0.25rem 0 !important;
+  padding: 0 !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-desc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  line-height: 1.5 !important;
+  color: #4b5563 !important;
+  margin: 0 0 0.5rem 0 !important;
+  padding: 0 !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-btn {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  line-height: 1.5 !important;
+  text-transform: none !important;
+  padding: 0.55rem 1.25rem !important;
+  margin: 0 !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-btn--link {
+  padding: 0.55rem 0.5rem !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-policy-link {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  letter-spacing: normal !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-category__label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  color: #1f2937 !important;
+}
+
+.kcc-banner.kcc-typography--plugin .kcc-category__desc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  color: #6b7280 !important;
+}
+
+.kcc-typography--theme {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* ── Bar variant ── */
+
+.kcc-banner--bar {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem 2rem;
+}
+
+.kcc-banner--bar .kcc-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.kcc-banner--bar .kcc-heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.kcc-banner--bar.kcc-typography--plugin .kcc-heading {
+  font-size: 16px !important;
+  margin: 0 !important;
+}
+
+.kcc-banner--bar .kcc-desc {
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+  color: #4b5563;
+}
+
+.kcc-banner--bar.kcc-typography--plugin .kcc-desc {
+  margin: 0 !important;
+}
+
+.kcc-banner--bar .kcc-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.kcc-banner--bar .kcc-details {
+  max-width: 1200px;
+  margin: 1rem auto 0;
+}
+
+/* ── Modal variant ── */
+
+.kcc-banner--modal {
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.kcc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.kcc-banner--modal .kcc-inner {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.kcc-banner--modal .kcc-heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.kcc-banner--modal.kcc-typography--plugin .kcc-heading {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.5rem !important;
+}
+
+.kcc-banner--modal .kcc-desc {
+  margin: 0 0 1.25rem;
+  color: #4b5563;
+}
+
+.kcc-banner--modal.kcc-typography--plugin .kcc-desc {
+  margin: 0 0 1.25rem !important;
+}
+
+.kcc-banner--modal .kcc-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Corner variant ── */
+
+.kcc-banner--corner {
+  bottom: 1rem;
+  left: 1rem;
+  max-width: 400px;
+  width: calc(100% - 2rem);
+}
+
+.kcc-banner--corner .kcc-inner {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.kcc-banner--corner .kcc-heading {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+}
+
+.kcc-banner--corner.kcc-typography--plugin .kcc-heading {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.4rem !important;
+}
+
+.kcc-banner--corner .kcc-desc {
+  margin: 0 0 1rem;
+  color: #4b5563;
+  font-size: 13px;
+}
+
+.kcc-banner--corner.kcc-typography--plugin .kcc-desc {
+  font-size: 13px !important;
+  margin: 0 0 1rem !important;
+}
+
+.kcc-banner--corner .kcc-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Shared elements ── */
+
+.kcc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.kcc-btn--primary {
+  background: var(--kcc-primary, #3D4872);
+  color: var(--kcc-primary-text, #fff);
+}
+
+.kcc-btn--primary:hover {
+  background: var(--kcc-primary-hover, #2d3656);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.kcc-btn--secondary {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.kcc-btn--secondary:hover {
+  background: #e5e7eb;
+}
+
+.kcc-btn--link {
+  background: none;
+  color: var(--kcc-primary, #3D4872);
+  padding: 0.55rem 0.5rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.kcc-btn--link:hover {
+  color: var(--kcc-primary-hover, #2d3656);
+}
+
+.kcc-policy-link {
+  color: var(--kcc-primary, #3D4872);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── Category toggles ── */
+
+.kcc-details {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.kcc-category {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 0;
+}
+
+.kcc-category__label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.kcc-category__check {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.kcc-category__toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  background: #d1d5db;
+  border-radius: 11px;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.kcc-category__toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.kcc-category__check:checked + .kcc-category__toggle {
+  background: var(--kcc-primary, #3D4872);
+}
+
+.kcc-category__check:checked + .kcc-category__toggle::after {
+  transform: translateX(18px);
+}
+
+.kcc-category__check:disabled + .kcc-category__toggle {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.kcc-category__desc {
+  margin: 0.2rem 0 0 0;
+  padding-left: 46px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.kcc-details-actions {
+  padding-top: 0.75rem;
+}
+
+/* ── Floating button ── */
+
+.kcc-floating-btn {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 999998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: var(--kcc-primary, #3D4872);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kcc-floating-btn svg {
+  color: #fff !important;
+  stroke: #fff !important;
+}
+
+.kcc-floating-btn svg circle[fill="currentColor"] {
+  fill: #fff !important;
+}
+
+.kcc-floating-btn:hover {
+  background: var(--kcc-primary-hover, #2d3656);
+  transform: scale(1.1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Policy page (shortcode) ── */
+
+.kcc-policy__section {
+  margin-bottom: 2rem;
+}
+
+.kcc-policy__section h3 {
+  margin: 0 0 0.25rem;
+  font-size: 18px;
+}
+
+.kcc-policy__cat-desc {
+  margin: 0 0 0.75rem;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.kcc-policy__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.kcc-policy__table th,
+.kcc-policy__table td {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.kcc-policy__table th {
+  background: #f9fafb;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #374151;
+}
+
+.kcc-policy__table code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.kcc-policy.kcc-typography--plugin {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  color: #1f2937 !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  text-transform: none !important;
+}
+
+.kcc-policy.kcc-typography--plugin .kcc-policy__section h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  color: #1f2937 !important;
+  margin: 0 0 0.25rem !important;
+}
+
+.kcc-policy.kcc-typography--plugin .kcc-policy__cat-desc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  letter-spacing: normal !important;
+  color: #6b7280 !important;
+}
+
+.kcc-policy.kcc-typography--plugin .kcc-policy__table,
+.kcc-policy.kcc-typography--plugin .kcc-policy__table th,
+.kcc-policy.kcc-typography--plugin .kcc-policy__table td {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  letter-spacing: normal !important;
+  color: #1f2937 !important;
+}
+
+.kcc-policy.kcc-typography--plugin .kcc-policy__table th {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  color: #374151 !important;
+  background: #f9fafb !important;
+}
+
+.kcc-banner.kcc-typography--theme .kcc-heading,
+.kcc-banner.kcc-typography--theme .kcc-desc,
+.kcc-banner.kcc-typography--theme .kcc-category__label,
+.kcc-banner.kcc-typography--theme .kcc-category__desc {
+  color: inherit;
+  font-family: inherit;
+}
+
+.kcc-banner.kcc-typography--theme .kcc-heading,
+.kcc-banner.kcc-typography--theme .kcc-desc,
+.kcc-banner.kcc-typography--theme .kcc-category__label,
+.kcc-banner.kcc-typography--theme .kcc-category__desc,
+.kcc-banner.kcc-typography--theme .kcc-btn {
+  font-size: inherit;
+}
+
+.kcc-policy.kcc-typography--theme {
+  font-family: inherit;
+  color: inherit;
+}
+
+.kcc-policy.kcc-typography--theme .kcc-policy__section h3,
+.kcc-policy.kcc-typography--theme .kcc-policy__cat-desc,
+.kcc-policy.kcc-typography--theme .kcc-policy__table,
+.kcc-policy.kcc-typography--theme .kcc-policy__table th,
+.kcc-policy.kcc-typography--theme .kcc-policy__table td,
+.kcc-policy.kcc-typography--theme .kcc-policy__table code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.kcc-policy.kcc-typography--theme .kcc-policy__table th {
+  background: transparent;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 600px) {
+  .kcc-banner--bar {
+    padding: 1rem;
+  }
+
+  .kcc-banner--bar .kcc-main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .kcc-banner--bar .kcc-actions {
+    flex-direction: column;
+  }
+
+  .kcc-banner--bar .kcc-btn {
+    width: 100%;
+  }
+
+  .kcc-banner--corner {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    max-width: none;
+    width: auto;
+  }
+
+  .kcc-banner--modal .kcc-inner {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .kcc-banner--modal .kcc-actions {
+    flex-direction: column;
+  }
+
+  .kcc-banner--modal .kcc-btn {
+    width: 100%;
+  }
+
+  .kcc-category__desc {
+    padding-left: 0;
+    margin-top: 0.3rem;
+  }
+}
