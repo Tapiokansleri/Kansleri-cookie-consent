@@ -26,6 +26,15 @@ require_once KCC_PLUGIN_DIR . 'includes/class-scanner.php';
 require_once KCC_PLUGIN_DIR . 'includes/class-consent.php';
 require_once KCC_PLUGIN_DIR . 'includes/class-policy-page.php';
 require_once KCC_PLUGIN_DIR . 'includes/class-consent-mode.php';
+require_once KCC_PLUGIN_DIR . 'vendor/plugin-update-checker/plugin-update-checker.php';
+
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+PucFactory::buildUpdateChecker(
+  'https://github.com/Tapiokansleri/Kansleri-cookie-consent/',
+  __FILE__,
+  'kansleri-cookie-consent'
+);
 
 function kcc_get_default_settings() {
   return array(
