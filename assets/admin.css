@@ -155,6 +155,23 @@
   white-space: nowrap;
 }
 
+.kcc-scan-auto {
+  margin-bottom: 1rem;
+}
+
+.kcc-scan-group--auto {
+  opacity: 0.85;
+}
+
+.kcc-scan-group--auto .kcc-scan-group__header {
+  background: #ecfdf5;
+  border-bottom-color: #a7f3d0;
+}
+
+.kcc-scan-unknown {
+  margin-bottom: 0.5rem;
+}
+
 .kcc-scan-spinner {
   display: inline-block;
   width: 16px;

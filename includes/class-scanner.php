@@ -108,7 +108,9 @@ class KCC_Scanner {
       $known_names[] = $c['name'];
     }
 
-    $new_cookies = array();
+    $auto_added = array();
+    $unknown = array();
+
     foreach ($found as $name) {
       $name = trim($name);
       if ($name === '' || in_array($name, $known_names, true)) {
@@ -116,19 +118,37 @@ class KCC_Scanner {
       }
 
       $meta = self::identify_cookie($name);
-      $new_cookies[] = array(
-        'name'        => $name,
-        'provider'    => $meta ? $meta['provider'] : '',
-        'category'    => $meta ? $meta['category'] : 'necessary',
-        'duration'    => $meta ? $meta['duration'] : '',
-        'description' => $meta ? $meta['description'] : '',
-        'identified'  => $meta !== null,
-      );
+
+      if ($meta) {
+        $cookie = array(
+          'name'        => $name,
+          'provider'    => $meta['provider'],
+          'category'    => $meta['category'],
+          'duration'    => $meta['duration'],
+          'description' => $meta['description'],
+        );
+        $existing[] = $cookie;
+        $auto_added[] = $cookie;
+      } else {
+        $unknown[] = array(
+          'name'        => $name,
+          'provider'    => '',
+          'category'    => 'necessary',
+          'duration'    => '',
+          'description' => '',
+        );
+      }
+
       $known_names[] = $name;
     }
 
+    if (!empty($auto_added)) {
+      update_option('kcc_cookies', $existing);
+    }
+
     wp_send_json_success(array(
-      'new_cookies' => $new_cookies,
+      'auto_added'  => $auto_added,
+      'unknown'     => $unknown,
       'total_found' => count($found),
     ));
   }

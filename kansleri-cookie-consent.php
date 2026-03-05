@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Kansleri Cookie Consent
  * Description: Lightweight cookie consent with Google Consent Mode v2, GTM dataLayer, cookie scanning, and auto-generated policy page.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Webwarden
  * Text Domain: kansleri-cookie-consent
  * Domain Path: /languages
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('KCC_VERSION', '1.0.0');
+define('KCC_VERSION', '1.0.1');
 define('KCC_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('KCC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('KCC_BASENAME', plugin_basename(__FILE__));
