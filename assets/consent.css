@@ -1,16 +1,16 @@
 /* ── Kansleri Cookie Consent Banner ── */
 
-.kcc-banner {
+.kncc-banner {
   position: fixed;
   z-index: 999999;
   box-sizing: border-box;
 }
 
-.kcc-banner *, .kcc-banner *::before, .kcc-banner *::after {
+.kncc-banner *, .kncc-banner *::before, .kncc-banner *::after {
   box-sizing: border-box;
 }
 
-.kcc-typography--plugin {
+.kncc-typography--plugin {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   line-height: 1.5 !important;
@@ -22,8 +22,8 @@
   text-indent: 0 !important;
 }
 
-.kcc-banner.kcc-typography--plugin *,
-.kcc-policy.kcc-typography--plugin * {
+.kncc-banner.kncc-typography--plugin *,
+.kncc-policy.kncc-typography--plugin * {
   letter-spacing: normal !important;
   word-spacing: normal !important;
   text-transform: none !important;
@@ -31,7 +31,7 @@
   text-indent: 0 !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-heading {
+.kncc-banner.kncc-typography--plugin .kncc-heading {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-weight: 600 !important;
   letter-spacing: normal !important;
@@ -42,7 +42,7 @@
   padding: 0 !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-desc {
+.kncc-banner.kncc-typography--plugin .kncc-desc {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   font-weight: 400 !important;
@@ -53,7 +53,7 @@
   padding: 0 !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-btn {
+.kncc-banner.kncc-typography--plugin .kncc-btn {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   font-weight: 600 !important;
@@ -64,17 +64,17 @@
   margin: 0 !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-btn--link {
+.kncc-banner.kncc-typography--plugin .kncc-btn--link {
   padding: 0.55rem 0.5rem !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-policy-link {
+.kncc-banner.kncc-typography--plugin .kncc-policy-link {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   letter-spacing: normal !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-category__label {
+.kncc-banner.kncc-typography--plugin .kncc-category__label {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   font-weight: 600 !important;
@@ -82,7 +82,7 @@
   color: #1f2937 !important;
 }
 
-.kcc-banner.kcc-typography--plugin .kcc-category__desc {
+.kncc-banner.kncc-typography--plugin .kncc-category__desc {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 13px !important;
   font-weight: 400 !important;
@@ -90,7 +90,7 @@
   color: #6b7280 !important;
 }
 
-.kcc-typography--theme {
+.kncc-typography--theme {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -99,7 +99,7 @@
 
 /* ── Bar variant ── */
 
-.kcc-banner--bar {
+.kncc-banner--bar {
   bottom: 0;
   left: 0;
   right: 0;
@@ -108,7 +108,7 @@
   padding: 1.25rem 2rem;
 }
 
-.kcc-banner--bar .kcc-main {
+.kncc-banner--bar .kncc-main {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -117,44 +117,44 @@
   flex-wrap: wrap;
 }
 
-.kcc-banner--bar .kcc-heading {
+.kncc-banner--bar .kncc-heading {
   font-size: 16px;
   font-weight: 600;
   margin: 0;
   flex-shrink: 0;
 }
 
-.kcc-banner--bar.kcc-typography--plugin .kcc-heading {
+.kncc-banner--bar.kncc-typography--plugin .kncc-heading {
   font-size: 16px !important;
   margin: 0 !important;
 }
 
-.kcc-banner--bar .kcc-desc {
+.kncc-banner--bar .kncc-desc {
   margin: 0;
   flex: 1;
   min-width: 200px;
   color: #4b5563;
 }
 
-.kcc-banner--bar.kcc-typography--plugin .kcc-desc {
+.kncc-banner--bar.kncc-typography--plugin .kncc-desc {
   margin: 0 !important;
 }
 
-.kcc-banner--bar .kcc-actions {
+.kncc-banner--bar .kncc-actions {
   display: flex;
   gap: 0.5rem;
   flex-shrink: 0;
   flex-wrap: wrap;
 }
 
-.kcc-banner--bar .kcc-details {
+.kncc-banner--bar .kncc-details {
   max-width: 1200px;
   margin: 1rem auto 0;
 }
 
 /* ── Modal variant ── */
 
-.kcc-banner--modal {
+.kncc-banner--modal {
   inset: 0;
   display: flex;
   align-items: center;
@@ -162,14 +162,14 @@
   padding: 1rem;
 }
 
-.kcc-overlay {
+.kncc-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 0;
 }
 
-.kcc-banner--modal .kcc-inner {
+.kncc-banner--modal .kncc-inner {
   position: relative;
   z-index: 1;
   background: #fff;
@@ -182,28 +182,28 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.kcc-banner--modal .kcc-heading {
+.kncc-banner--modal .kncc-heading {
   font-size: 20px;
   font-weight: 700;
   margin: 0 0 0.5rem;
 }
 
-.kcc-banner--modal.kcc-typography--plugin .kcc-heading {
+.kncc-banner--modal.kncc-typography--plugin .kncc-heading {
   font-size: 20px !important;
   font-weight: 700 !important;
   margin: 0 0 0.5rem !important;
 }
 
-.kcc-banner--modal .kcc-desc {
+.kncc-banner--modal .kncc-desc {
   margin: 0 0 1.25rem;
   color: #4b5563;
 }
 
-.kcc-banner--modal.kcc-typography--plugin .kcc-desc {
+.kncc-banner--modal.kncc-typography--plugin .kncc-desc {
   margin: 0 0 1.25rem !important;
 }
 
-.kcc-banner--modal .kcc-actions {
+.kncc-banner--modal .kncc-actions {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -211,52 +211,62 @@
 
 /* ── Corner variant ── */
 
-.kcc-banner--corner {
+.kncc-banner--corner {
   bottom: 1rem;
   left: 1rem;
   max-width: 400px;
   width: calc(100% - 2rem);
 }
 
-.kcc-banner--corner .kcc-inner {
+.kncc-banner--corner .kncc-inner {
   background: #fff;
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-.kcc-banner--corner .kcc-heading {
+.kncc-banner--corner .kncc-heading {
   font-size: 17px;
   font-weight: 700;
   margin: 0 0 0.4rem;
 }
 
-.kcc-banner--corner.kcc-typography--plugin .kcc-heading {
+.kncc-banner--corner.kncc-typography--plugin .kncc-heading {
   font-size: 17px !important;
   font-weight: 700 !important;
   margin: 0 0 0.4rem !important;
 }
 
-.kcc-banner--corner .kcc-desc {
+.kncc-banner--corner .kncc-desc {
   margin: 0 0 1rem;
   color: #4b5563;
   font-size: 13px;
 }
 
-.kcc-banner--corner.kcc-typography--plugin .kcc-desc {
+.kncc-banner--corner.kncc-typography--plugin .kncc-desc {
   font-size: 13px !important;
   margin: 0 0 1rem !important;
 }
 
-.kcc-banner--corner .kcc-actions {
+.kncc-banner--corner .kncc-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.kncc-banner--corner .kncc-btn {
+  padding: 0.45rem 0.75rem;
+  font-size: 13px;
+}
+
+.kncc-banner--corner .kncc-btn--link {
+  padding: 0.45rem 0.4rem;
 }
 
 /* ── Shared elements ── */
 
-.kcc-btn {
+.kncc-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -270,58 +280,58 @@
   white-space: nowrap;
 }
 
-.kcc-btn--primary {
-  background: var(--kcc-primary, #3D4872);
-  color: var(--kcc-primary-text, #fff);
+.kncc-btn--primary {
+  background: var(--kncc-primary, #3D4872);
+  color: var(--kncc-primary-text, #fff);
 }
 
-.kcc-btn--primary:hover {
-  background: var(--kcc-primary-hover, #2d3656);
+.kncc-btn--primary:hover {
+  background: var(--kncc-primary-hover, #2d3656);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.kcc-btn--secondary {
+.kncc-btn--secondary {
   background: #f3f4f6;
   color: #374151;
 }
 
-.kcc-btn--secondary:hover {
+.kncc-btn--secondary:hover {
   background: #e5e7eb;
 }
 
-.kcc-btn--link {
+.kncc-btn--link {
   background: none;
-  color: var(--kcc-primary, #3D4872);
+  color: var(--kncc-primary, #3D4872);
   padding: 0.55rem 0.5rem;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.kcc-btn--link:hover {
-  color: var(--kcc-primary-hover, #2d3656);
+.kncc-btn--link:hover {
+  color: var(--kncc-primary-hover, #2d3656);
 }
 
-.kcc-policy-link {
-  color: var(--kcc-primary, #3D4872);
+.kncc-policy-link {
+  color: var(--kncc-primary, #3D4872);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
 /* ── Category toggles ── */
 
-.kcc-details {
+.kncc-details {
   border-top: 1px solid #e5e7eb;
   padding-top: 1rem;
   margin-top: 1rem;
 }
 
-.kcc-category {
+.kncc-category {
   display: flex;
   flex-direction: column;
   padding: 0.6rem 0;
 }
 
-.kcc-category__label {
+.kncc-category__label {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -330,14 +340,14 @@
   font-size: 14px;
 }
 
-.kcc-category__check {
+.kncc-category__check {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.kcc-category__toggle {
+.kncc-category__toggle {
   position: relative;
   display: inline-block;
   width: 40px;
@@ -348,7 +358,7 @@
   flex-shrink: 0;
 }
 
-.kcc-category__toggle::after {
+.kncc-category__toggle::after {
   content: '';
   position: absolute;
   top: 2px;
@@ -361,33 +371,33 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-.kcc-category__check:checked + .kcc-category__toggle {
-  background: var(--kcc-primary, #3D4872);
+.kncc-category__check:checked + .kncc-category__toggle {
+  background: var(--kncc-primary, #3D4872);
 }
 
-.kcc-category__check:checked + .kcc-category__toggle::after {
+.kncc-category__check:checked + .kncc-category__toggle::after {
   transform: translateX(18px);
 }
 
-.kcc-category__check:disabled + .kcc-category__toggle {
+.kncc-category__check:disabled + .kncc-category__toggle {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.kcc-category__desc {
+.kncc-category__desc {
   margin: 0.2rem 0 0 0;
   padding-left: 46px;
   color: #6b7280;
   font-size: 13px;
 }
 
-.kcc-details-actions {
+.kncc-details-actions {
   padding-top: 0.75rem;
 }
 
 /* ── Floating button ── */
 
-.kcc-floating-btn {
+.kncc-floating-btn {
   position: fixed;
   bottom: 1rem;
   left: 1rem;
@@ -399,59 +409,59 @@
   height: 48px;
   border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  background: var(--kcc-primary, #3D4872);
+  background: var(--kncc-primary, #3D4872);
   color: #fff;
   cursor: pointer;
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.08);
   transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.kcc-floating-btn svg {
+.kncc-floating-btn svg {
   color: #fff !important;
   stroke: #fff !important;
 }
 
-.kcc-floating-btn svg circle[fill="currentColor"] {
+.kncc-floating-btn svg circle[fill="currentColor"] {
   fill: #fff !important;
 }
 
-.kcc-floating-btn:hover {
-  background: var(--kcc-primary-hover, #2d3656);
+.kncc-floating-btn:hover {
+  background: var(--kncc-primary-hover, #2d3656);
   transform: scale(1.1);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 /* ── Policy page (shortcode) ── */
 
-.kcc-policy__section {
+.kncc-policy__section {
   margin-bottom: 2rem;
 }
 
-.kcc-policy__section h3 {
+.kncc-policy__section h3 {
   margin: 0 0 0.25rem;
   font-size: 18px;
 }
 
-.kcc-policy__cat-desc {
+.kncc-policy__cat-desc {
   margin: 0 0 0.75rem;
   color: #6b7280;
   font-size: 14px;
 }
 
-.kcc-policy__table {
+.kncc-policy__table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-.kcc-policy__table th,
-.kcc-policy__table td {
+.kncc-policy__table th,
+.kncc-policy__table td {
   text-align: left;
   padding: 0.6rem 0.75rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.kcc-policy__table th {
+.kncc-policy__table th {
   background: #f9fafb;
   font-weight: 600;
   font-size: 13px;
@@ -460,14 +470,14 @@
   color: #374151;
 }
 
-.kcc-policy__table code {
+.kncc-policy__table code {
   background: #f3f4f6;
   padding: 2px 6px;
   border-radius: 3px;
   font-size: 13px;
 }
 
-.kcc-policy.kcc-typography--plugin {
+.kncc-policy.kncc-typography--plugin {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   color: #1f2937 !important;
   letter-spacing: normal !important;
@@ -475,7 +485,7 @@
   text-transform: none !important;
 }
 
-.kcc-policy.kcc-typography--plugin .kcc-policy__section h3 {
+.kncc-policy.kncc-typography--plugin .kncc-policy__section h3 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 18px !important;
   font-weight: 600 !important;
@@ -485,23 +495,23 @@
   margin: 0 0 0.25rem !important;
 }
 
-.kcc-policy.kcc-typography--plugin .kcc-policy__cat-desc {
+.kncc-policy.kncc-typography--plugin .kncc-policy__cat-desc {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   letter-spacing: normal !important;
   color: #6b7280 !important;
 }
 
-.kcc-policy.kcc-typography--plugin .kcc-policy__table,
-.kcc-policy.kcc-typography--plugin .kcc-policy__table th,
-.kcc-policy.kcc-typography--plugin .kcc-policy__table td {
+.kncc-policy.kncc-typography--plugin .kncc-policy__table,
+.kncc-policy.kncc-typography--plugin .kncc-policy__table th,
+.kncc-policy.kncc-typography--plugin .kncc-policy__table td {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
   font-size: 14px !important;
   letter-spacing: normal !important;
   color: #1f2937 !important;
 }
 
-.kcc-policy.kcc-typography--plugin .kcc-policy__table th {
+.kncc-policy.kncc-typography--plugin .kncc-policy__table th {
   font-size: 13px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
@@ -510,66 +520,130 @@
   background: #f9fafb !important;
 }
 
-.kcc-banner.kcc-typography--theme .kcc-heading,
-.kcc-banner.kcc-typography--theme .kcc-desc,
-.kcc-banner.kcc-typography--theme .kcc-category__label,
-.kcc-banner.kcc-typography--theme .kcc-category__desc {
+.kncc-banner.kncc-typography--theme .kncc-heading,
+.kncc-banner.kncc-typography--theme .kncc-desc,
+.kncc-banner.kncc-typography--theme .kncc-category__label,
+.kncc-banner.kncc-typography--theme .kncc-category__desc {
   color: inherit;
   font-family: inherit;
 }
 
-.kcc-banner.kcc-typography--theme .kcc-heading,
-.kcc-banner.kcc-typography--theme .kcc-desc,
-.kcc-banner.kcc-typography--theme .kcc-category__label,
-.kcc-banner.kcc-typography--theme .kcc-category__desc,
-.kcc-banner.kcc-typography--theme .kcc-btn {
+.kncc-banner.kncc-typography--theme .kncc-heading,
+.kncc-banner.kncc-typography--theme .kncc-desc,
+.kncc-banner.kncc-typography--theme .kncc-category__label,
+.kncc-banner.kncc-typography--theme .kncc-category__desc,
+.kncc-banner.kncc-typography--theme .kncc-btn {
   font-size: inherit;
 }
 
-.kcc-policy.kcc-typography--theme {
+.kncc-policy.kncc-typography--theme {
   font-family: inherit;
   color: inherit;
 }
 
-.kcc-policy.kcc-typography--theme .kcc-policy__section h3,
-.kcc-policy.kcc-typography--theme .kcc-policy__cat-desc,
-.kcc-policy.kcc-typography--theme .kcc-policy__table,
-.kcc-policy.kcc-typography--theme .kcc-policy__table th,
-.kcc-policy.kcc-typography--theme .kcc-policy__table td,
-.kcc-policy.kcc-typography--theme .kcc-policy__table code {
+.kncc-policy.kncc-typography--theme .kncc-policy__section h3,
+.kncc-policy.kncc-typography--theme .kncc-policy__cat-desc,
+.kncc-policy.kncc-typography--theme .kncc-policy__table,
+.kncc-policy.kncc-typography--theme .kncc-policy__table th,
+.kncc-policy.kncc-typography--theme .kncc-policy__table td,
+.kncc-policy.kncc-typography--theme .kncc-policy__table code {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
 }
 
-.kcc-policy.kcc-typography--theme .kcc-policy__table th {
+.kncc-policy.kncc-typography--theme .kncc-policy__table th {
   background: transparent;
   text-transform: none;
   letter-spacing: normal;
 }
 
+/* ── Blocked iframes ── */
+
+.kncc-blocked-iframe {
+  display: none !important;
+}
+
+/* ── Iframe placeholder ── */
+
+.kncc-iframe-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 200px;
+  max-width: 100%;
+  padding: 2rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* Collapse WP responsive embed aspect-ratio padding when iframe is blocked */
+.wp-block-embed__wrapper:has(.kncc-blocked-iframe)::before {
+  display: none;
+}
+
+.wp-has-aspect-ratio:has(.kncc-blocked-iframe) .wp-block-embed__wrapper::before {
+  display: none;
+}
+
+.wp-block-embed:has(.kncc-blocked-iframe) {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.wp-block-embed__wrapper > .kncc-iframe-placeholder {
+  border-radius: 0;
+}
+
+.kncc-iframe-placeholder p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.kncc-iframe-placeholder .kncc-iframe-accept {
+  font-size: 14px;
+}
+
+/* ── Edit consent button on policy page ── */
+
+.kncc-policy__edit-consent {
+  padding-top: 0.5rem;
+}
+
+.kncc-edit-consent-btn {
+  cursor: pointer;
+}
+
 /* ── Responsive ── */
 
 @media (max-width: 600px) {
-  .kcc-banner--bar {
+  .kncc-banner--bar {
     padding: 1rem;
   }
 
-  .kcc-banner--bar .kcc-main {
+  .kncc-banner--bar .kncc-main {
     flex-direction: column;
     align-items: stretch;
     gap: 0.75rem;
   }
 
-  .kcc-banner--bar .kcc-actions {
+  .kncc-banner--bar .kncc-actions {
     flex-direction: column;
   }
 
-  .kcc-banner--bar .kcc-btn {
+  .kncc-banner--bar .kncc-btn {
     width: 100%;
   }
 
-  .kcc-banner--corner {
+  .kncc-banner--corner {
     left: 0.5rem;
     right: 0.5rem;
     bottom: 0.5rem;
@@ -577,20 +651,20 @@
     width: auto;
   }
 
-  .kcc-banner--modal .kcc-inner {
+  .kncc-banner--modal .kncc-inner {
     padding: 1.25rem;
     border-radius: 12px;
   }
 
-  .kcc-banner--modal .kcc-actions {
+  .kncc-banner--modal .kncc-actions {
     flex-direction: column;
   }
 
-  .kcc-banner--modal .kcc-btn {
+  .kncc-banner--modal .kncc-btn {
     width: 100%;
   }
 
-  .kcc-category__desc {
+  .kncc-category__desc {
     padding-left: 0;
     margin-top: 0.3rem;
   }

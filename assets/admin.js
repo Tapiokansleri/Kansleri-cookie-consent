@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var cfg = window.kccAdmin || {};
+  var cfg = window.knccAdmin || {};
   var ajaxUrl = cfg.ajaxUrl;
   var nonce = cfg.nonce;
   var strings = cfg.strings || {};
@@ -13,10 +13,10 @@
   }
 
   function showNotice(msg, type) {
-    var el = document.getElementById('kcc-notice');
+    var el = document.getElementById('kncc-notice');
     if (!el) return;
     el.textContent = msg;
-    el.className = 'kcc-notice kcc-notice--' + (type || 'success');
+    el.className = 'kncc-notice kncc-notice--' + (type || 'success');
     el.style.display = '';
     setTimeout(function () { el.style.display = 'none'; }, 4000);
   }
@@ -29,13 +29,14 @@
   /* ── Settings forms (General, Policy, Integration) ── */
 
   function initSettingsForms() {
-    var forms = document.querySelectorAll('#kcc-general-form, #kcc-policy-form, #kcc-integration-form');
+    var forms = document.querySelectorAll('#kncc-general-form, #kncc-policy-form, #kncc-integration-form');
     forms.forEach(function (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var body = serializeForm(form);
-        body.append('action', 'kcc_save_settings');
+        body.append('action', 'kncc_save_settings');
         body.append('nonce', nonce);
+        body.append('kncc_lang', strings.knccLang || '');
 
         fetch(ajaxUrl, { method: 'POST', body: body })
           .then(function (r) {
@@ -46,7 +47,11 @@
             return r.json();
           })
           .then(function (res) {
-            showNotice(res.success ? strings.saved : (res.data || strings.error), res.success ? 'success' : 'error');
+            if (res.success) {
+              location.reload();
+            } else {
+              showNotice(res.data || strings.error, 'error');
+            }
           })
           .catch(function (err) { showNotice(err.message || strings.error, 'error'); });
       });
@@ -58,15 +63,15 @@
   var cookieIndex = 0;
 
   function initCookiesTab() {
-    var tbody = document.getElementById('kcc-cookie-tbody');
-    var form = document.getElementById('kcc-cookies-form');
-    var addBtn = document.getElementById('kcc-add-cookie-btn');
-    var scanBtn = document.getElementById('kcc-scan-btn');
-    var copyPromptBtn = document.getElementById('kcc-copy-ai-prompt-btn');
-    var aiHelper = document.getElementById('kcc-ai-helper');
-    var importArea = document.getElementById('kcc-import-json-area');
-    var importTextarea = document.getElementById('kcc-import-json-textarea');
-    var importBtn = document.getElementById('kcc-import-json-btn');
+    var tbody = document.getElementById('kncc-cookie-tbody');
+    var form = document.getElementById('kncc-cookies-form');
+    var addBtn = document.getElementById('kncc-add-cookie-btn');
+    var scanBtn = document.getElementById('kncc-scan-btn');
+    var copyPromptBtn = document.getElementById('kncc-copy-ai-prompt-btn');
+    var aiHelper = document.getElementById('kncc-ai-helper');
+    var importArea = document.getElementById('kncc-import-json-area');
+    var importTextarea = document.getElementById('kncc-import-json-textarea');
+    var importBtn = document.getElementById('kncc-import-json-btn');
 
     if (!tbody) return;
 
@@ -81,11 +86,11 @@
     }
 
     tbody.addEventListener('click', function (e) {
-      if (e.target.classList.contains('kcc-remove-cookie')) {
+      if (e.target.classList.contains('kncc-remove-cookie')) {
         var row = e.target.closest('tr');
         if (row) row.remove();
         if (!tbody.querySelector('tr[data-index]')) {
-          tbody.innerHTML = '<tr class="kcc-no-cookies"><td colspan="6">No cookies registered yet.</td></tr>';
+          tbody.innerHTML = '<tr class="kncc-no-cookies"><td colspan="6">' + escHtml(strings.noCookies || 'No cookies registered yet.') + '</td></tr>';
         }
       }
     });
@@ -94,8 +99,9 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var body = serializeForm(form);
-        body.append('action', 'kcc_save_cookies');
+        body.append('action', 'kncc_save_cookies');
         body.append('nonce', nonce);
+        body.append('kncc_lang', strings.knccLang || '');
 
         fetch(ajaxUrl, { method: 'POST', body: body })
           .then(function (r) {
@@ -106,7 +112,11 @@
             return r.json();
           })
           .then(function (res) {
-            showNotice(res.success ? strings.saved : (res.data || strings.error), res.success ? 'success' : 'error');
+            if (res.success) {
+              location.reload();
+            } else {
+              showNotice(res.data || strings.error, 'error');
+            }
           })
           .catch(function (err) { showNotice(err.message || strings.error, 'error'); });
       });
@@ -179,8 +189,9 @@
           importTextarea.value = '';
 
           var saveBody = serializeForm(form);
-          saveBody.append('action', 'kcc_save_cookies');
+          saveBody.append('action', 'kncc_save_cookies');
           saveBody.append('nonce', nonce);
+          saveBody.append('kncc_lang', strings.knccLang || '');
           fetch(ajaxUrl, { method: 'POST', body: saveBody })
             .then(function (r) { return r.json(); })
             .then(function (res) {
@@ -244,7 +255,7 @@
       addRow(tbody, entry.name, entry.category, entry.provider, entry.duration, entry.description);
     });
     if (!cookies.length) {
-      tbody.innerHTML = '<tr class="kcc-no-cookies"><td colspan="6">No cookies registered yet.</td></tr>';
+      tbody.innerHTML = '<tr class="kncc-no-cookies"><td colspan="6">' + escHtml(strings.noCookies || 'No cookies registered yet.') + '</td></tr>';
     }
   }
 
@@ -261,9 +272,11 @@
   }
 
   function buildAiPrompt(cookies) {
+    var locale = strings.locale || 'en_US';
     var payload = JSON.stringify(cookies, null, 2);
     return [
       'Improve cookie descriptions in this JSON array.',
+      'Write all descriptions in the language matching this locale: ' + locale + '.',
       '',
       'Rules:',
       '- Keep the JSON array format identical.',
@@ -271,6 +284,7 @@
       '- Keep name, category, provider, and duration unchanged unless empty and obvious.',
       '- Rewrite only the "description" fields in clear plain language for website visitors.',
       '- Keep each description concise (around 8-20 words), factual, and non-legalistic.',
+      '- Write descriptions in the language matching the locale (' + locale + ').',
       '- Return only valid JSON, no markdown and no extra commentary.',
       '',
       'Cookie JSON:',
@@ -279,7 +293,7 @@
   }
 
   function addRow(tbody, name, category, provider, duration, description) {
-    var noRow = tbody.querySelector('.kcc-no-cookies');
+    var noRow = tbody.querySelector('.kncc-no-cookies');
     if (noRow) noRow.remove();
 
     var i = cookieIndex++;
@@ -299,7 +313,7 @@
       '<td><input type="text" name="cookies[' + i + '][provider]" value="' + esc(provider) + '" /></td>' +
       '<td><input type="text" name="cookies[' + i + '][duration]" value="' + esc(duration) + '" style="width:100px;" /></td>' +
       '<td><input type="text" name="cookies[' + i + '][description]" value="' + esc(description) + '" class="large-text" /></td>' +
-      '<td><button type="button" class="button kcc-remove-cookie" title="Remove">&times;</button></td>';
+      '<td><button type="button" class="button kncc-remove-cookie" title="' + escHtml(strings.removeTitle || 'Remove') + '">&times;</button></td>';
 
     tbody.appendChild(tr);
   }
@@ -329,9 +343,9 @@
   function runScan(tbody) {
     if (scanInProgress) return;
 
-    var resultsEl = document.getElementById('kcc-scan-results');
-    var iframe = document.getElementById('kcc-scan-iframe');
-    var scanBtn = document.getElementById('kcc-scan-btn');
+    var resultsEl = document.getElementById('kncc-scan-results');
+    var iframe = document.getElementById('kncc-scan-iframe');
+    var scanBtn = document.getElementById('kncc-scan-btn');
     if (!resultsEl || !iframe) return;
 
     scanInProgress = true;
@@ -339,7 +353,7 @@
       scanBtn.disabled = true;
       scanBtn.textContent = strings.scanning || 'Scanning...';
     }
-    resultsEl.innerHTML = '<span class="kcc-scan-spinner"></span> ' + strings.scanning;
+    resultsEl.innerHTML = '<span class="kncc-scan-spinner"></span> ' + strings.scanning;
     resultsEl.style.display = '';
 
     var timer = setTimeout(function () {
@@ -390,7 +404,7 @@
       }
 
       var body = new URLSearchParams();
-      body.append('action', 'kcc_process_scan');
+      body.append('action', 'kncc_process_scan');
       body.append('nonce', nonce);
       found.forEach(function (n) { body.append('found[]', n); });
 
@@ -416,7 +430,7 @@
           var unknown = res.data.unknown || [];
 
           if (!autoAdded.length && !unknown.length) {
-            resultsEl.innerHTML = '<div class="kcc-scan-alldone"><span class="dashicons dashicons-yes-alt" style="color:#059669;margin-right:4px;"></span> ' + (strings.allDone || 'All cookies are done! No new or incomplete cookies found.') + '</div>';
+            resultsEl.innerHTML = '<div class="kncc-scan-alldone"><span class="dashicons dashicons-yes-alt" style="color:#059669;margin-right:4px;"></span> ' + (strings.allDone || 'All cookies are done! No new or incomplete cookies found.') + '</div>';
             return;
           }
 
@@ -430,21 +444,21 @@
               groups[key].push(c);
             });
 
-            html += '<div class="kcc-scan-auto">';
-            html += '<p><strong>' + autoAdded.length + ' known cookie(s) added automatically:</strong></p>';
+            html += '<div class="kncc-scan-auto">';
+            html += '<p><strong>' + (strings.knownAdded || '%d known cookie(s) added automatically:').replace('%d', autoAdded.length) + '</strong></p>';
             Object.keys(groups).sort().forEach(function (provider) {
               var items = groups[provider];
-              html += '<div class="kcc-scan-group kcc-scan-group--auto">';
-              html += '<div class="kcc-scan-group__header">';
+              html += '<div class="kncc-scan-group kncc-scan-group--auto">';
+              html += '<div class="kncc-scan-group__header">';
               html += '<span class="dashicons dashicons-yes-alt" style="color:#059669;margin-right:4px;"></span> ';
-              html += '<strong>' + escHtml(provider) + '</strong> <span class="kcc-scan-group__count">(' + items.length + ')</span>';
+              html += '<strong>' + escHtml(provider) + '</strong> <span class="kncc-scan-group__count">(' + items.length + ')</span>';
               html += '</div>';
-              html += '<table class="kcc-scan-group__table"><tbody>';
+              html += '<table class="kncc-scan-group__table"><tbody>';
               items.forEach(function (c) {
                 html += '<tr>';
                 html += '<td><code>' + escHtml(c.name) + '</code></td>';
-                html += '<td class="kcc-scan-cat kcc-scan-cat--' + escHtml(c.category) + '">' + escHtml(c.category) + '</td>';
-                html += '<td class="kcc-scan-desc">' + escHtml(c.description) + '</td>';
+                html += '<td class="kncc-scan-cat kncc-scan-cat--' + escHtml(c.category) + '">' + escHtml(c.category) + '</td>';
+                html += '<td class="kncc-scan-desc">' + escHtml(c.description) + '</td>';
                 html += '</tr>';
               });
               html += '</tbody></table></div>';
@@ -457,18 +471,18 @@
           }
 
           if (unknown.length) {
-            html += '<div class="kcc-scan-unknown">';
-            html += '<p><strong>' + unknown.length + ' unknown cookie(s) added &mdash; please set their category and description below.</strong></p>';
-            html += '<div class="kcc-scan-group">';
-            html += '<div class="kcc-scan-group__header">';
+            html += '<div class="kncc-scan-unknown">';
+            html += '<p><strong>' + (strings.unknownAdded || '%d unknown cookie(s) added — please set their category and description below.').replace('%d', unknown.length) + '</strong></p>';
+            html += '<div class="kncc-scan-group">';
+            html += '<div class="kncc-scan-group__header">';
             html += '<span class="dashicons dashicons-warning" style="color:#d97706;margin-right:4px;"></span> ';
-            html += '<strong>Unknown</strong> <span class="kcc-scan-group__count">(' + unknown.length + ')</span>';
+            html += '<strong>' + (strings.unknownLabel || 'Unknown') + '</strong> <span class="kncc-scan-group__count">(' + unknown.length + ')</span>';
             html += '</div>';
-            html += '<table class="kcc-scan-group__table"><tbody>';
+            html += '<table class="kncc-scan-group__table"><tbody>';
             unknown.forEach(function (c) {
               html += '<tr>';
               html += '<td><code>' + escHtml(c.name) + '</code></td>';
-              html += '<td class="kcc-scan-desc">Added &mdash; categorize and describe in the table below</td>';
+              html += '<td class="kncc-scan-desc">' + (strings.unknownDesc || 'Added — categorize and describe in the table below') + '</td>';
               html += '</tr>';
             });
             html += '</tbody></table></div>';
@@ -487,14 +501,14 @@
               if (descInput && !descInput.value.trim()) allHaveDesc = false;
             });
             if (allHaveDesc) {
-              html += '<div class="kcc-scan-alldone"><span class="dashicons dashicons-yes-alt" style="color:#059669;margin-right:4px;"></span> ' + (strings.allDone || 'All cookies are done! Every cookie has a description.') + '</div>';
+              html += '<div class="kncc-scan-alldone"><span class="dashicons dashicons-yes-alt" style="color:#059669;margin-right:4px;"></span> ' + (strings.allDone || 'All cookies are done! Every cookie has a description.') + '</div>';
             }
           }
 
           resultsEl.innerHTML = html;
 
           if (unknown.length) {
-            var helperEl = document.getElementById('kcc-ai-helper');
+            var helperEl = document.getElementById('kncc-ai-helper');
             if (helperEl) helperEl.style.display = '';
           }
         })
@@ -507,11 +521,137 @@
     iframe.src = cfg.homeUrl;
   }
 
+  /* ── Consent Log export/purge ── */
+
+  function initConsentLog() {
+    var exportBtn = document.getElementById('kncc-export-log-btn');
+    var purgeBtn = document.getElementById('kncc-purge-log-btn');
+
+    if (exportBtn) {
+      exportBtn.addEventListener('click', function () {
+        var body = new URLSearchParams();
+        body.append('action', 'kncc_export_consent_log');
+        body.append('nonce', nonce);
+
+        fetch(ajaxUrl, { method: 'POST', body: body })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res.success) {
+              showNotice(res.data || strings.error, 'error');
+              return;
+            }
+            var blob = new Blob([res.data.csv], { type: 'text/csv;charset=utf-8' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'consent-log-' + new Date().toISOString().slice(0, 10) + '.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          })
+          .catch(function (err) { showNotice(err.message || strings.error, 'error'); });
+      });
+    }
+
+    if (purgeBtn) {
+      purgeBtn.addEventListener('click', function () {
+        if (!confirm(strings.confirmPurge || 'This will permanently delete all consent log records and statistics. Continue?')) {
+          return;
+        }
+        var body = new URLSearchParams();
+        body.append('action', 'kncc_purge_consent_log');
+        body.append('nonce', nonce);
+
+        fetch(ajaxUrl, { method: 'POST', body: body })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (res.success) {
+              showNotice(strings.purged || 'Purged.', 'success');
+              window.location.reload();
+            } else {
+              showNotice(res.data || strings.error, 'error');
+            }
+          })
+          .catch(function (err) { showNotice(err.message || strings.error, 'error'); });
+      });
+    }
+  }
+
+  /* ── AI Prompt for Policy Page Content ── */
+
+  function initPolicyAiHelper() {
+    var copyBtn = document.getElementById('kncc-copy-policy-prompt-btn');
+    if (!copyBtn) return;
+
+    copyBtn.addEventListener('click', function () {
+      var data = window.knccPolicyPromptData || {};
+      var prompt = buildPolicyPrompt(data);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(prompt)
+          .then(function () {
+            showNotice(strings.policyCopied || 'Prompt copied!', 'success');
+          })
+          .catch(function () {
+            window.prompt('Copy this prompt:', prompt);
+          });
+      } else {
+        window.prompt('Copy this prompt:', prompt);
+      }
+    });
+  }
+
+  function buildPolicyPrompt(data) {
+    var lines = [
+      'Generate a complete cookie and privacy policy page for a website.',
+      'Write everything in the language matching the locale below.',
+      '',
+      'Site name: ' + (data.siteName || 'Unknown'),
+      'Site URL: ' + (data.siteUrl || ''),
+      'Admin email: ' + (data.adminEmail || ''),
+      'Locale: ' + (data.locale || 'en_US'),
+      ''
+    ];
+
+    if (data.categories && data.categories.length) {
+      lines.push('Cookie categories used on this site:');
+      data.categories.forEach(function (c) { lines.push('- ' + c); });
+      lines.push('');
+    }
+
+    lines.push('The page should include the following sections:');
+    lines.push('1. Register and data protection notice — what kind of register this is and under what law (e.g. GDPR)');
+    lines.push('2. Data controller — company/person name, contact email');
+    lines.push('3. Register name — what the register is called');
+    lines.push('4. Legal basis and purpose of processing personal data — explain why data is collected');
+    lines.push('5. Data content — what kind of data is stored (name, email, IP, etc.)');
+    lines.push('6. Data sources — where the data comes from (website forms, cookies, analytics, etc.)');
+    lines.push('7. Data retention — how long data is stored');
+    lines.push('8. Data disclosure and transfer — whether data is shared with third parties');
+    lines.push('9. Rights of the data subject — right to access, rectify, delete, restrict processing, object, and data portability');
+    lines.push('10. Cookies — DO NOT list individual cookies. Instead, include this exact WordPress shortcode on its own line: [kncc_cookie_policy]');
+    lines.push('    This shortcode will automatically render the full cookie declaration table.');
+    lines.push('11. Consent management — explain that this site uses a consent banner and visitors can change their preferences at any time');
+    lines.push('');
+    lines.push('Rules:');
+    lines.push('- Write in the language matching the locale (' + (data.locale || 'en_US') + ').');
+    lines.push('- Tone: professional, clear, not overly legalistic.');
+    lines.push('- DO NOT use placeholders like [Company name] or [Email]. If you need information that is not provided above (such as the company name, contact person, business ID, or address), ASK me for it before generating the page. Do not guess or leave blanks.');
+    lines.push('- In the Cookies section (section 10), output ONLY the shortcode [kncc_cookie_policy] — the plugin generates the cookie table automatically.');
+    lines.push('- Output plain HTML that can be pasted directly into a WordPress page editor.');
+    lines.push('- Do NOT wrap the output in markdown code fences or add any commentary outside the HTML.');
+
+    return lines.join('\n');
+  }
+
   /* ── Init ── */
 
   function init() {
     initSettingsForms();
     initCookiesTab();
+    initConsentLog();
+    initPolicyAiHelper();
   }
 
   if (document.readyState === 'loading') {

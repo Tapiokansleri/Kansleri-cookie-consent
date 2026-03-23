@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class KCC_Consent_Mode {
+class KNCC_Consent_Mode {
 
   public function __construct() {
-    $settings = kcc_get_settings();
+    $settings = kncc_get_settings();
     if (!empty($settings['consent_mode']) || self::site_kit_handles_consent()) {
       add_action('wp_head', array($this, 'output_defaults'), 1);
     }
@@ -25,7 +25,7 @@ class KCC_Consent_Mode {
     if (!empty($sitekit_consent['enabled'])) {
       return true;
     }
-    return apply_filters('googlesitekit_consent_mode_status', false) !== false;
+    return apply_filters('googlesitekit_consent_mode_status', false) !== false; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Google Site Kit API hook.
   }
 
   /**
@@ -40,7 +40,7 @@ class KCC_Consent_Mode {
 
     if (self::site_kit_handles_consent()) {
       $js = "(function(){"
-        . "var m=document.cookie.match(/(?:^|; )kcc_consent=([^;]*)/);"
+        . "var m=document.cookie.match(/(?:^|; )kncc_consent=([^;]*)/);"
         . "if(!m)return;"
         . "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
         . "try{var c=JSON.parse(decodeURIComponent(m[1]));"
@@ -71,7 +71,7 @@ class KCC_Consent_Mode {
       . "wait_for_update:500"
       . "});"
       . "(function(){"
-      . "var m=document.cookie.match(/(?:^|; )kcc_consent=([^;]*)/);"
+      . "var m=document.cookie.match(/(?:^|; )kncc_consent=([^;]*)/);"
       . "if(!m)return;"
       . "try{var c=JSON.parse(decodeURIComponent(m[1]));"
       . "gtag('consent','update',{"

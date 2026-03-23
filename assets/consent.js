@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var COOKIE_NAME = 'kcc_consent';
+  var COOKIE_NAME = 'kncc_consent';
   var COOKIE_DAYS = 365;
-  var config = window.kccConfig || {};
+  var config = window.knccConfig || {};
 
   function getConsent() {
     var match = document.cookie.match(new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)'));
@@ -60,21 +60,72 @@
     });
   }
 
-  function recordStat(choice) {
+  function recordStat(choice, consent) {
     if (!config.ajaxUrl) return;
     var body = new FormData();
-    body.append('action', 'kcc_record_consent');
+    body.append('action', 'kncc_record_consent');
     body.append('choice', choice);
+    body.append('nonce', config.statsNonce || '');
+    body.append('categories', JSON.stringify({
+      necessary: true,
+      analytics: !!consent.analytics,
+      marketing: !!consent.marketing,
+      preferences: !!consent.preferences,
+    }));
     try { navigator.sendBeacon(config.ajaxUrl, body); } catch (e) {
       fetch(config.ajaxUrl, { method: 'POST', body: body }).catch(function () {});
     }
+  }
+
+  /* ── Script / iframe activation after consent ── */
+
+  var scriptsActivated = false;
+
+  function activateBlockedScripts(consent) {
+    if (scriptsActivated) return;
+    scriptsActivated = true;
+
+    var blocked = document.querySelectorAll('script[type="text/plain"][data-kncc-category]');
+    blocked.forEach(function (el) {
+      var cat = el.getAttribute('data-kncc-category');
+      if (!consent[cat]) return;
+
+      var newScript = document.createElement('script');
+      newScript.type = 'text/javascript';
+
+      if (el.src) {
+        newScript.src = el.src;
+        if (el.hasAttribute('async')) newScript.async = true;
+        if (el.hasAttribute('defer')) newScript.defer = true;
+      } else {
+        newScript.textContent = el.textContent;
+      }
+
+      el.parentNode.insertBefore(newScript, el.nextSibling);
+      el.remove();
+    });
+
+    var iframes = document.querySelectorAll('iframe[data-kncc-src][data-kncc-category]');
+    iframes.forEach(function (el) {
+      var cat = el.getAttribute('data-kncc-category');
+      if (!consent[cat]) return;
+
+      el.src = el.getAttribute('data-kncc-src');
+      el.removeAttribute('data-kncc-src');
+      el.classList.remove('kncc-blocked-iframe');
+      var placeholder = el.previousElementSibling;
+      if (placeholder && placeholder.classList.contains('kncc-iframe-placeholder')) {
+        placeholder.remove();
+      }
+    });
   }
 
   function applyConsent(consent, choice) {
     setConsent(consent);
     updateConsentMode(consent);
     pushDataLayer(consent);
-    if (choice) recordStat(choice);
+    activateBlockedScripts(consent);
+    if (choice) recordStat(choice, consent);
     hideBanner();
     showFloatingBtn();
   }
@@ -84,12 +135,18 @@
   }
 
   function rejectAll() {
-    applyConsent({ necessary: true, analytics: false, marketing: false, preferences: false }, 'reject');
+    var consent = { necessary: true, analytics: false, marketing: false, preferences: false };
+    setConsent(consent);
+    updateConsentMode(consent);
+    pushDataLayer(consent);
+    recordStat('reject', consent);
+    // Reload so server-side iframe blocking takes effect with the new cookie.
+    location.reload();
   }
 
   function saveCustom() {
     var consent = { necessary: true };
-    var checks = document.querySelectorAll('.kcc-category__check');
+    var checks = document.querySelectorAll('.kncc-category__check');
     checks.forEach(function (el) {
       var cat = el.getAttribute('data-category');
       if (cat !== 'necessary') {
@@ -115,7 +172,7 @@
 
       var existing = getConsent();
       if (existing) {
-        var checks = banner.querySelectorAll('.kcc-category__check');
+        var checks = banner.querySelectorAll('.kncc-category__check');
         checks.forEach(function (el) {
           var cat = el.getAttribute('data-category');
           if (cat !== 'necessary' && existing[cat] !== undefined) {
@@ -154,19 +211,58 @@
     details.style.display = hidden ? '' : 'none';
   }
 
+  /* ── Inline iframe accept buttons ── */
+
+  function initIframeAcceptButtons() {
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-kncc-iframe-accept]');
+      if (!btn) return;
+
+      var cat = btn.getAttribute('data-kncc-iframe-accept');
+      var consent = getConsent() || { necessary: true };
+      consent[cat] = true;
+      setConsent(consent);
+      updateConsentMode(consent);
+      pushDataLayer(consent);
+
+      // Activate all iframes for this category
+      var iframes = document.querySelectorAll('iframe[data-kncc-src][data-kncc-category="' + cat + '"]');
+      iframes.forEach(function (el) {
+        el.src = el.getAttribute('data-kncc-src');
+        el.removeAttribute('data-kncc-src');
+        el.classList.remove('kncc-blocked-iframe');
+        var placeholder = el.previousElementSibling;
+        if (placeholder && placeholder.classList.contains('kncc-iframe-placeholder')) {
+          placeholder.remove();
+        }
+      });
+
+      // Remove remaining placeholders for this category
+      var placeholders = document.querySelectorAll('.kncc-iframe-placeholder[data-kncc-category="' + cat + '"]');
+      placeholders.forEach(function (el) { el.remove(); });
+    });
+  }
+
+  /* ── Global API for reopening consent from policy page or external links ── */
+
+  window.knccEditConsent = function () {
+    hideFloatingBtn();
+    showBanner();
+  };
+
   function init() {
-    banner = document.getElementById('kcc-banner');
-    floatingBtn = document.getElementById('kcc-floating-btn');
+    banner = document.getElementById('kncc-banner');
+    floatingBtn = document.getElementById('kncc-floating-btn');
 
     if (!banner) return;
 
-    details = banner.querySelector('.kcc-details');
+    details = banner.querySelector('.kncc-details');
 
     banner.addEventListener('click', function (e) {
-      var target = e.target.closest('[data-kcc]');
+      var target = e.target.closest('[data-kncc]');
       if (!target) return;
 
-      var action = target.getAttribute('data-kcc');
+      var action = target.getAttribute('data-kncc');
       switch (action) {
         case 'accept':
           acceptAll();
@@ -193,9 +289,12 @@
       });
     }
 
+    initIframeAcceptButtons();
+
     var consent = getConsent();
     if (consent) {
       updateConsentMode(consent);
+      activateBlockedScripts(consent);
       showFloatingBtn();
     } else {
       showBanner();

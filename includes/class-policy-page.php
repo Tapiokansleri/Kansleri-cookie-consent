@@ -4,17 +4,17 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class KCC_Policy_Page {
+class KNCC_Policy_Page {
 
   public function __construct() {
-    add_shortcode('kcc_cookie_policy', array($this, 'render_shortcode'));
+    add_shortcode('kncc_cookie_policy', array($this, 'render_shortcode'));
   }
 
   /**
    * Creates a cookie policy page on plugin activation if one doesn't exist yet.
    */
   public static function maybe_create_page() {
-    $settings = kcc_get_settings();
+    $settings = kncc_get_settings();
 
     if (!empty($settings['policy_page_id'])) {
       $existing = get_post($settings['policy_page_id']);
@@ -25,30 +25,30 @@ class KCC_Policy_Page {
 
     $page_id = wp_insert_post(array(
       'post_title'   => __('Cookie Policy', 'kansleri-cookie-consent'),
-      'post_content' => '[kcc_cookie_policy]',
+      'post_content' => '[kncc_cookie_policy]',
       'post_status'  => 'draft',
       'post_type'    => 'page',
     ));
 
     if ($page_id && !is_wp_error($page_id)) {
       $settings['policy_page_id'] = $page_id;
-      update_option('kcc_settings', $settings);
+      update_option('kncc_settings', $settings);
     }
   }
 
   /**
-   * Renders the [kcc_cookie_policy] shortcode.
+   * Renders the [kncc_cookie_policy] shortcode.
    */
   public function render_shortcode() {
-    $cookies = kcc_get_cookies();
-    $settings = kcc_get_settings();
+    $cookies = kncc_get_localized_cookies();
+    $settings = kncc_get_localized_settings();
     $text_style_mode = (isset($settings['text_style_mode']) && $settings['text_style_mode'] === 'plugin') ? 'plugin' : 'theme';
 
     if (empty($cookies)) {
       return '<p>' . esc_html__('No cookies have been registered yet.', 'kansleri-cookie-consent') . '</p>';
     }
 
-    $all_cats = kcc_get_categories();
+    $all_cats = kncc_get_categories();
     $categories = array();
     foreach ($all_cats as $key => $data) {
       $categories[$key] = $data['label'];
@@ -72,13 +72,13 @@ class KCC_Policy_Page {
 
     ob_start();
     ?>
-    <div class="kcc-policy kcc-typography--<?php echo esc_attr($text_style_mode); ?>">
+    <div class="kncc-policy kncc-typography--<?php echo esc_attr($text_style_mode); ?>">
       <?php foreach ($categories as $key => $label) : ?>
         <?php if (empty($grouped[$key])) continue; ?>
-        <div class="kcc-policy__section">
+        <div class="kncc-policy__section">
           <h3><?php echo esc_html($label); ?></h3>
-          <p class="kcc-policy__cat-desc"><?php echo esc_html($cat_descriptions[$key]); ?></p>
-          <table class="kcc-policy__table">
+          <p class="kncc-policy__cat-desc"><?php echo esc_html($cat_descriptions[$key]); ?></p>
+          <table class="kncc-policy__table">
             <thead>
               <tr>
                 <th><?php esc_html_e('Cookie', 'kansleri-cookie-consent'); ?></th>
@@ -100,6 +100,13 @@ class KCC_Policy_Page {
           </table>
         </div>
       <?php endforeach; ?>
+
+      <div class="kncc-policy__edit-consent" style="margin-top:1.5rem;">
+        <button type="button" class="kncc-btn kncc-btn--primary kncc-edit-consent-btn"
+                onclick="if(window.knccEditConsent)window.knccEditConsent()">
+          <?php esc_html_e('Edit cookie preferences', 'kansleri-cookie-consent'); ?>
+        </button>
+      </div>
     </div>
     <?php
     return ob_get_clean();

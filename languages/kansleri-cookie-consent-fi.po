@@ -3,10 +3,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Kansleri Cookie Consent 1.0.3\n"
+"Project-Id-Version: Kansleri Cookie Consent 1.2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 00:00+0000\n"
-"PO-Revision-Date: 2026-03-05 00:00+0000\n"
+"POT-Creation-Date: 2026-03-06 12:00+0100\n"
+"PO-Revision-Date: 2026-03-06 12:00+0100\n"
 "Last-Translator: Kansleri.fi\n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -95,6 +95,18 @@ msgstr "Evästesuostumus: %1$d evästeeltä puuttuu kuvaus: %2$s. %3$s lisätäk
 msgid "Go to Cookies tab"
 msgstr "Siirry Evästeet-välilehteen"
 
+#: kansleri-cookie-consent.php
+msgid "Cookies"
+msgstr "Evästeet"
+
+#: kansleri-cookie-consent.php
+msgid "This site uses a cookie consent banner powered by Kansleri Cookie Consent. When you interact with the banner, a cookie named <code>kncc_consent</code> is stored in your browser for up to 1 year. It records your consent preferences (which cookie categories you accepted or rejected) so the site can remember your choice on future visits. No personal data is stored in this cookie."
+msgstr "Tämä sivusto käyttää Kansleri Cookie Consent -lisäosan evästebanneria. Kun käytät banneria, selaimeesi tallennetaan eväste nimeltä <code>kncc_consent</code> enintään 1 vuodeksi. Se tallentaa suostumusvalintasi (mitkä evästekategoriat hyväksyit tai hylkäsit), jotta sivusto muistaa valintasi tulevilla käynneillä. Henkilötietoja ei tallenneta tähän evästeeseen."
+
+#: kansleri-cookie-consent.php
+msgid "The plugin also records anonymous, aggregated consent statistics (how many visitors accepted, rejected, or customized cookies each day) and individual consent log entries for GDPR audit compliance. Consent log entries contain a hashed (non-reversible) visitor identifier, the consent choice, which categories were accepted, and the policy version. No IP addresses, user identifiers, or personal data are stored in plain text. Consent log records are automatically deleted after 13 months."
+msgstr "Lisäosa tallentaa myös nimettömiä, koottuja suostumustilastoja (kuinka moni kävijä hyväksyi, hylkäsi tai mukautti evästeitä päivittäin) sekä yksittäisiä suostumuslokimerkintöjä GDPR-auditointia varten. Suostumuslokimerkinnät sisältävät tiivistetyn (peruuttamattoman) kävijätunnisteen, suostumusvalinnan, hyväksytyt kategoriat ja käytäntöversion. IP-osoitteita, käyttäjätunnisteita tai henkilötietoja ei tallenneta selkokielisenä. Suostumuslokimerkinnät poistetaan automaattisesti 13 kuukauden jälkeen."
+
 #: includes/class-admin.php
 msgid "Cookie Consent"
 msgstr "Evästesuostumus"
@@ -160,16 +172,20 @@ msgid "General"
 msgstr "Yleiset"
 
 #: includes/class-admin.php
-msgid "Cookies"
-msgstr "Evästeet"
-
-#: includes/class-admin.php
 msgid "Policy Page"
 msgstr "Tietosuojasivu"
 
 #: includes/class-admin.php
 msgid "Integration"
 msgstr "Integraatio"
+
+#: includes/class-admin.php
+msgid "Script Blocking"
+msgstr "Skriptien esto"
+
+#: includes/class-admin.php
+msgid "Statistics"
+msgstr "Tilastot"
 
 #: includes/class-admin.php
 msgid "Documentations"
@@ -332,12 +348,32 @@ msgid "— Select a page —"
 msgstr "— Valitse sivu —"
 
 #: includes/class-admin.php
-msgid "Select a page or use the button below to create one. Add the shortcode [kcc_cookie_policy] to its content."
-msgstr "Valitse sivu tai luo uusi alla olevalla painikkeella. Lisää lyhytkoodi [kcc_cookie_policy] sivun sisältöön."
+msgid "Select a page or use the button below to create one. Add the shortcode [kncc_cookie_policy] to its content."
+msgstr "Valitse sivu tai luo uusi alla olevalla painikkeella. Lisää lyhytkoodi [kncc_cookie_policy] sivun sisältöön."
 
 #: includes/class-admin.php
 msgid "Preview Policy Page"
 msgstr "Esikatsele tietosuojasivua"
+
+#: includes/class-admin.php
+msgid "No cookie policy page has been selected. Please select or create one below."
+msgstr "Evästekäytäntösivua ei ole valittu. Valitse tai luo sellainen alla."
+
+#: includes/class-admin.php
+msgid "Cookie policy page is missing a translation for: %s. Create the translated page and add the [kncc_cookie_policy] shortcode."
+msgstr "Evästekäytäntösivun käännös puuttuu kieleltä: %s. Luo käännetty sivu ja lisää siihen [kncc_cookie_policy]-lyhytkoodi."
+
+#: includes/class-admin.php
+msgid "Generate cookie policy page content with AI"
+msgstr "Luo evästekäytäntösivun sisältö tekoälyllä"
+
+#: includes/class-admin.php
+msgid "Copy the prompt below and paste it into an AI tool. It will generate a complete cookie and privacy policy page in your site language. The cookie declaration will be handled automatically by the [kncc_cookie_policy] shortcode. Paste the generated HTML into your policy page."
+msgstr "Kopioi alla oleva kehote ja liitä se AI-työkaluun. Se luo täydellisen eväste- ja tietosuojakäytäntösivun sivustosi kielellä. Evästeluettelo lisätään automaattisesti [kncc_cookie_policy]-lyhytkoodilla. Liitä luotu HTML tietosuojasivullesi."
+
+#: includes/class-admin.php
+msgid "Copy AI Prompt for Policy Page"
+msgstr "Kopioi AI-kehote tietosuojasivulle"
 
 #: includes/class-admin.php
 msgid "Google Consent Mode v2"
@@ -362,6 +398,30 @@ msgstr "Säiliön tunnus on Google Tag Managerin työtilan tunniste (muoto: GTM-
 #: includes/class-admin.php
 msgid "Consent Mode defaults (auto-injected in &lt;head&gt;)"
 msgstr "Consent Mode -oletukset (lisätään automaattisesti &lt;head&gt;-osioon)"
+
+#: includes/class-admin.php
+msgid "Detected integrations"
+msgstr "Havaitut integraatiot"
+
+#: includes/class-admin.php
+msgid "Active — Site Kit manages consent defaults. This plugin sends consent updates only."
+msgstr "Aktiivinen — Site Kit hallinnoi suostumusoletuksia. Tämä lisäosa lähettää vain suostumuspäivitykset."
+
+#: includes/class-admin.php
+msgid "Active — Site Kit consent mode not enabled. This plugin handles all consent signals."
+msgstr "Aktiivinen — Site Kitin consent mode ei ole käytössä. Tämä lisäosa hoitaa kaikki suostumussignaalit."
+
+#: includes/class-admin.php
+msgid "Active — consent status is shared with other plugins via the WP Consent API."
+msgstr "Aktiivinen — suostumustila jaetaan muille lisäosille WP Consent API:n kautta."
+
+#: includes/class-admin.php
+msgid "Forced on because Google Site Kit is active. Consent Mode is required for Site Kit to receive consent signals."
+msgstr "Pakotettu päälle koska Google Site Kit on aktiivinen. Consent Mode tarvitaan, jotta Site Kit vastaanottaa suostumussignaalit."
+
+#: includes/class-admin.php
+msgid "Site Kit is handling consent defaults. This plugin will only send consent updates after user choice — no duplicate defaults."
+msgstr "Site Kit hoitaa suostumusoletukset. Tämä lisäosa lähettää vain suostumuspäivitykset käyttäjän valinnan jälkeen — ei duplikaatteja."
 
 #: includes/class-admin.php
 msgid "Installation guide"
@@ -390,6 +450,14 @@ msgstr "Jos tuntemattomia evästeitä löytyy, AI-apuri ilmestyy: kopioi kehote,
 #: includes/class-admin.php
 msgid "Assign or create your Cookie Policy page in the Policy Page tab."
 msgstr "Valitse tai luo evästekäytäntösivu Tietosuojasivu-välilehdessä."
+
+#: includes/class-admin.php
+msgid "Use the AI prompt on the Policy Page tab to generate the full cookie policy page content. Paste the generated HTML into your policy page."
+msgstr "Käytä Tietosuojasivu-välilehden AI-kehotetta luodaksesi tietosuojasivun sisällön. Liitä luotu HTML tietosuojasivullesi."
+
+#: includes/class-admin.php
+msgid "Review the Script Blocking tab to see which scripts are auto-blocked."
+msgstr "Tarkista Skriptien esto -välilehti nähdäksesi automaattisesti estetyt skriptit."
 
 #: includes/class-admin.php
 msgid "What each option means"
@@ -452,6 +520,22 @@ msgid "Selects which page is used for cookie policy content generated by shortco
 msgstr "Valitsee sivun, jota käytetään lyhytkoodilla luotuun evästekäytäntösisältöön."
 
 #: includes/class-admin.php
+msgid "AI Prompt for Policy Page"
+msgstr "AI-kehote tietosuojasivulle"
+
+#: includes/class-admin.php
+msgid "Generates a prompt you can paste into an AI tool to create a full privacy and cookie policy. The generated text will include the [kncc_cookie_policy] shortcode for the cookie declaration section."
+msgstr "Luo kehotteen, jonka voit liittää AI-työkaluun luodaksesi täydellisen tietosuoja- ja evästekäytännön. Luotu teksti sisältää [kncc_cookie_policy]-lyhytkoodin evästeluetteloa varten."
+
+#: includes/class-admin.php
+msgid "Multilingual support"
+msgstr "Monikielisyystuki"
+
+#: includes/class-admin.php
+msgid "If Polylang or WPML is active, the plugin checks that the policy page has a translation in every active language and warns you if any are missing."
+msgstr "Jos Polylang tai WPML on aktiivinen, lisäosa tarkistaa, että tietosuojasivulla on käännös jokaiselle aktiiviselle kielelle, ja varoittaa jos käännöksiä puuttuu."
+
+#: includes/class-admin.php
 msgid "Integration tab"
 msgstr "Integraatio-välilehti"
 
@@ -462,6 +546,54 @@ msgstr "Googlen kehys yksityisyysturvalliselle tagien toiminnalle. Ennen suostum
 #: includes/class-admin.php
 msgid "Your GTM container identifier (for example GTM-N6828NL). It identifies which tag container your site uses. This field is informational in this plugin and does not inject GTM scripts."
 msgstr "GTM-säiliötunnuksesi (esim. GTM-N6828NL). Se tunnistaa, mitä tagisäiliötä sivustosi käyttää. Tämä kenttä on tiedoksi tässä lisäosassa eikä lisää GTM-skriptejä."
+
+#: includes/class-admin.php
+msgid "Script Blocking tab"
+msgstr "Skriptien esto -välilehti"
+
+#: includes/class-admin.php
+msgid "Auto-detected scripts"
+msgstr "Automaattisesti tunnistetut skriptit"
+
+#: includes/class-admin.php
+msgid "Shows WordPress-enqueued scripts that the plugin automatically recognizes and blocks (e.g. Google Analytics, Meta Pixel). These are blocked before consent and activated after the visitor accepts the relevant category."
+msgstr "Näyttää WordPressin jonottamat skriptit, jotka lisäosa tunnistaa ja estää automaattisesti (esim. Google Analytics, Meta Pixel). Ne estetään ennen suostumusta ja aktivoidaan kävijän hyväksyttyä asianmukaisen kategorian."
+
+#: includes/class-admin.php
+msgid "Statistics tab"
+msgstr "Tilastot-välilehti"
+
+#: includes/class-admin.php
+msgid "Consent statistics"
+msgstr "Suostumustilastot"
+
+#: includes/class-admin.php
+msgid "Shows how many visitors accepted, rejected, or customized cookies over 7, 30, or 90 day periods. Data is aggregated and anonymous — no personal data is stored."
+msgstr "Näyttää kuinka moni kävijä hyväksyi, hylkäsi tai mukautti evästeitä 7, 30 tai 90 päivän aikana. Tiedot ovat koottuja ja nimettömiä — henkilötietoja ei tallenneta."
+
+#: includes/class-admin.php
+msgid "Consent Log"
+msgstr "Suostumusloki"
+
+#: includes/class-admin.php
+msgid "Individual anonymized consent records for GDPR audit compliance. Records contain a hashed visitor identifier, the consent choice, accepted categories, and the policy version. Records are automatically purged after 13 months."
+msgstr "Yksittäiset anonymisoidut suostumusmerkinnät GDPR-auditointia varten. Merkinnät sisältävät tiivistetyn kävijätunnisteen, suostumusvalinnan, hyväksytyt kategoriat ja käytäntöversion. Merkinnät poistetaan automaattisesti 13 kuukauden jälkeen."
+
+#: includes/class-admin.php
+msgid "Export CSV"
+msgstr "Vie CSV"
+
+#: includes/class-admin.php
+msgid "Downloads all consent log records as a CSV file for auditing."
+msgstr "Lataa kaikki suostumuslokimerkinnät CSV-tiedostona auditointia varten."
+
+#: includes/class-admin.php
+msgid "Purge All Records"
+msgstr "Tyhjennä kaikki merkinnät"
+
+#: includes/class-admin.php
+msgid "Permanently deletes all consent log records and aggregate statistics."
+msgstr "Poistaa pysyvästi kaikki suostumuslokimerkinnät ja kootut tilastot."
 
 #: includes/class-admin.php
 msgid "Troubleshooting"
@@ -476,8 +608,128 @@ msgid "If banner typography looks odd with your theme, switch General > Text and
 msgstr "Jos bannerin typografia näyttää oudolta teemassasi, vaihda Yleiset > Teksti- ja kirjasintyyli lisäosan tyyliin."
 
 #: includes/class-admin.php
+msgid "If scripts still load before consent, check that they appear in the Script Blocking tab with a recognized handle."
+msgstr "Jos skriptit latautuvat edelleen ennen suostumusta, tarkista että ne näkyvät Skriptien esto -välilehdessä tunnistetulla kahvalla."
+
+#: includes/class-admin.php
+msgid "If the statistics are empty, make sure visitors have interacted with the banner. Data starts recording after the first consent choice."
+msgstr "Jos tilastot ovat tyhjiä, varmista että kävijät ovat käyttäneet banneria. Tietojen tallennus alkaa ensimmäisen suostumusvalinnan jälkeen."
+
+#: includes/class-admin.php
+msgid "If the policy page warning shows missing translations, create the translated page in each language and add the [kncc_cookie_policy] shortcode."
+msgstr "Jos tietosuojasivun varoitus näyttää puuttuvia käännöksiä, luo käännetty sivu jokaiselle kielelle ja lisää [kncc_cookie_policy]-lyhytkoodi."
+
+#: includes/class-admin.php
+msgid "%d days"
+msgstr "%d päivää"
+
+#: includes/class-admin.php
+msgid "Total responses"
+msgstr "Vastauksia yhteensä"
+
+#: includes/class-admin.php
+msgid "Accepted all"
+msgstr "Hyväksyi kaikki"
+
+#: includes/class-admin.php
+msgid "Rejected all"
+msgstr "Hylkäsi kaikki"
+
+#: includes/class-admin.php
+msgid "Custom selection"
+msgstr "Mukautettu valinta"
+
+#: includes/class-admin.php
+msgid "Daily breakdown"
+msgstr "Päivittäinen erittely"
+
+#: includes/class-admin.php
+msgid "No consent data recorded yet. Statistics will appear after visitors start interacting with the cookie banner."
+msgstr "Suostumustietoja ei ole vielä tallennettu. Tilastot näkyvät kun kävijät alkavat käyttää evästebanneria."
+
+#: includes/class-admin.php
+msgid "All systems are good!"
+msgstr "Systeemit on kunnossa!"
+
+#: includes/class-admin.php
+msgid "The plugin re-checks cookies every day via cron."
+msgstr "Lisäosa tarkistaa evästeet automaattisesti päivittäin."
+
+#: includes/class-admin.php
+msgid "Next check: %s"
+msgstr "Seuraava tarkistus: %s"
+
+#: includes/class-admin.php
+msgid "Cron error: %s"
+msgstr "Cron-virhe: %s"
+
+#: includes/class-admin.php
 msgid "Cookies saved."
 msgstr "Evästeet tallennettu."
+
+#: includes/class-admin.php
+msgid "Script blocking prevents third-party scripts from running until the visitor gives consent for that category. WordPress-enqueued scripts with known handles (Google Analytics, Meta Pixel, etc.) are auto-blocked."
+msgstr "Skriptien esto estää kolmannen osapuolen skriptien suorittamisen, kunnes kävijä antaa suostumuksen kyseiselle kategorialle. WordPress-jonosta tunnistetut skriptit (Google Analytics, Meta Pixel jne.) estetään automaattisesti."
+
+#: includes/class-admin.php
+msgid "These script handles are automatically recognized and blocked before consent. No configuration needed — they are blocked by default when detected on your site."
+msgstr "Nämä skriptien kahvat tunnistetaan automaattisesti ja estetään ennen suostumusta. Asetuksia ei tarvita — ne estetään oletuksena sivustollasi havaittuina."
+
+#: includes/class-admin.php
+msgid "Script Handle"
+msgstr "Skriptin kahva"
+
+#: includes/class-admin.php
+msgid "Individual consent records for GDPR audit compliance. Records are automatically purged after the retention period (13 months)."
+msgstr "Yksittäiset suostumusmerkinnät GDPR-auditointia varten. Merkinnät poistetaan automaattisesti säilytysajan (13 kuukautta) jälkeen."
+
+#: includes/class-admin.php
+msgid "Total records:"
+msgstr "Merkintöjä yhteensä:"
+
+#: includes/class-admin.php
+msgid "Oldest:"
+msgstr "Vanhin:"
+
+#: includes/class-admin.php
+msgid "Newest:"
+msgstr "Uusin:"
+
+#: includes/class-admin.php
+msgid "No consent log records yet."
+msgstr "Suostumuslokimerkintöjä ei ole vielä."
+
+#: includes/class-admin.php
+msgid "Date/Time"
+msgstr "Päivä/aika"
+
+#: includes/class-admin.php
+msgid "Visitor"
+msgstr "Kävijä"
+
+#: includes/class-admin.php
+msgid "Choice"
+msgstr "Valinta"
+
+#: includes/class-admin.php
+msgid "Categories"
+msgstr "Kategoriat"
+
+#: includes/class-admin.php
+msgid "Policy Version"
+msgstr "Käytäntöversio"
+
+#: includes/class-admin.php
+msgid "This will permanently delete all consent log records and statistics. Continue?"
+msgstr "Tämä poistaa pysyvästi kaikki suostumuslokimerkinnät ja tilastot. Jatketaanko?"
+
+#: includes/class-admin.php
+msgid "All consent log records and statistics have been purged."
+msgstr "Kaikki suostumuslokimerkinnät ja tilastot on tyhjennetty."
+
+#: includes/class-admin.php
+msgid "AI prompt for policy page copied to clipboard."
+msgstr "AI-kehote tietosuojasivulle kopioitu leikepöydälle."
 
 #: includes/class-consent.php
 msgid "Cookie consent"
@@ -523,82 +775,114 @@ msgstr "Eväste"
 msgid "Purpose"
 msgstr "Tarkoitus"
 
-#: includes/class-admin.php
-msgid "All systems are good!"
-msgstr "Systeemit on kunnossa!"
+#: includes/class-policy-page.php
+msgid "Edit cookie preferences"
+msgstr "Muokkaa evästeasetuksia"
+
+#: includes/class-script-blocker.php
+msgid "This content is blocked because it requires marketing cookies."
+msgstr "Tämä sisältö on estetty, koska se vaatii markkinointievästeitä."
+
+#: includes/class-script-blocker.php
+msgid "Accept marketing cookies"
+msgstr "Hyväksy markkinointievästeet"
+
+#: kansleri-cookie-consent.php
+msgid "Manage cookies"
+msgstr "Hallitse evästeitä"
 
 #: includes/class-admin.php
-msgid "The plugin re-checks cookies every day via cron."
-msgstr "Lisäosa tarkistaa evästeet automaattisesti päivittäin."
+msgid "You can also add a link to open cookie settings anywhere (e.g. footer) using this shortcode:"
+msgstr "Voit myös lisätä linkin evästeasetusten avaamiseen minne tahansa (esim. alatunnisteeseen) tällä lyhytkoodilla:"
 
 #: includes/class-admin.php
-msgid "Next check: %s"
-msgstr "Seuraava tarkistus: %s"
+msgid "Copied!"
+msgstr "Kopioitu!"
 
 #: includes/class-admin.php
-msgid "Cron error: %s"
-msgstr "Cron-virhe: %s"
+msgid "Copy"
+msgstr "Kopioi"
 
 #: includes/class-admin.php
-msgid "Detected integrations"
-msgstr "Havaitut integraatiot"
+msgid "Use the text attribute to customize the link text: %s"
+msgstr "Käytä text-attribuuttia muokataksesi linkin tekstiä: %s"
 
 #: includes/class-admin.php
-msgid "Active — Site Kit manages consent defaults. This plugin sends consent updates only."
-msgstr "Aktiivinen — Site Kit hallinnoi suostumusoletuksia. Tämä lisäosa lähettää vain suostumuspäivitykset."
+msgid "You are editing settings for language: %s. Switch the admin language to edit other translations. Settings not configured for this language will fall back to the default language."
+msgstr "Muokkaat asetuksia kielelle: %s. Vaihda hallintapaneelin kieltä muokataksesi muita käännöksiä. Asetukset, joita ei ole määritetty tälle kielelle, käyttävät oletuskielen arvoja."
 
 #: includes/class-admin.php
-msgid "Active — Site Kit consent mode not enabled. This plugin handles all consent signals."
-msgstr "Aktiivinen — Site Kitin consent mode ei ole käytössä. Tämä lisäosa hoitaa kaikki suostumussignaalit."
+msgid "%d known cookie(s) added automatically:"
+msgstr "%d tunnistettu eväste lisätty automaattisesti:"
 
 #: includes/class-admin.php
-msgid "Not installed. No action needed — this plugin handles consent signals independently."
-msgstr "Ei asennettu. Toimenpiteitä ei tarvita — tämä lisäosa hoitaa suostumussignaalit itsenäisesti."
+msgid "%d unknown cookie(s) added — please set their category and description below."
+msgstr "%d tuntematonta evästettä lisätty — aseta niiden kategoria ja kuvaus alla."
 
 #: includes/class-admin.php
-msgid "Active — consent status is shared with other plugins via the WP Consent API."
-msgstr "Aktiivinen — suostumustila jaetaan muille lisäosille WP Consent API:n kautta."
+msgid "Unknown"
+msgstr "Tuntematon"
 
 #: includes/class-admin.php
-msgid "Not installed. Optional — install it if other plugins need to read consent status."
-msgstr "Ei asennettu. Valinnainen — asenna jos muut lisäosat tarvitsevat suostumustilan lukuoikeuden."
+msgid "Added — categorize and describe in the table below"
+msgstr "Lisätty — luokittele ja kuvaile alla olevassa taulukossa"
 
 #: includes/class-admin.php
-msgid "Statistics"
-msgstr "Tilastot"
+msgid "YouTube & Vimeo iframe blocking"
+msgstr "YouTube- ja Vimeo-videoiden esto"
 
 #: includes/class-admin.php
-msgid "%d days"
-msgstr "%d päivää"
+msgid "Video embeds from YouTube and Vimeo are automatically blocked until the visitor accepts marketing cookies. A placeholder with an accept button is shown instead. When the visitor has already consented, videos load normally."
+msgstr "YouTube- ja Vimeo-videoupotukset estetään automaattisesti, kunnes kävijä hyväksyy markkinointievästeet. Videon tilalla näytetään paikkamerkki hyväksymispainikkeella. Jos kävijä on jo antanut suostumuksensa, videot latautuvat normaalisti."
 
 #: includes/class-admin.php
-msgid "Total responses"
-msgstr "Vastauksia yhteensä"
+msgid "Multilingual support (WPML & Polylang)"
+msgstr "Monikielisyystuki (WPML ja Polylang)"
 
 #: includes/class-admin.php
-msgid "Accepted all"
-msgstr "Hyväksyi kaikki"
+msgid "Per-language banner texts"
+msgstr "Kielikohtaiset banneritekstit"
 
 #: includes/class-admin.php
-msgid "Rejected all"
-msgstr "Hylkäsi kaikki"
+msgid "When WPML or Polylang is active, switch to a secondary language in the admin bar and edit General tab settings. Each language can have its own heading, description, and button labels. The default language values are used as fallback."
+msgstr "Kun WPML tai Polylang on aktiivinen, vaihda toissijaiseen kieleen ylläpitopalkin kautta ja muokkaa Yleiset-välilehden asetuksia. Jokaisella kielellä voi olla omat otsikot, kuvaukset ja painikkeiden tekstit. Oletuskielen arvoja käytetään varana."
 
 #: includes/class-admin.php
-msgid "Custom selection"
-msgstr "Mukautettu valinta"
+msgid "Per-language cookie descriptions"
+msgstr "Kielikohtaiset evästekuvaukset"
 
 #: includes/class-admin.php
-msgid "Daily breakdown"
-msgstr "Päivittäinen erittely"
+msgid "Cookie names, categories, providers, and durations are shared across all languages. Only the description field can be translated per language. Switch language and edit descriptions in the Cookies tab."
+msgstr "Evästeiden nimet, kategoriat, tarjoajat ja kestot ovat samat kaikilla kielillä. Vain kuvauskenttä voidaan kääntää kielikohtaisesti. Vaihda kieltä ja muokkaa kuvauksia Evästeet-välilehdellä."
 
 #: includes/class-admin.php
-msgid "No consent data recorded yet. Statistics will appear after visitors start interacting with the cookie banner."
-msgstr "Suostumustietoja ei ole vielä tallennettu. Tilastot näkyvät kun kävijät alkavat käyttää evästebanneria."
+msgid "Per-language settings"
+msgstr "Kielikohtaiset asetukset"
 
 #: includes/class-admin.php
-msgid "Forced on because Google Site Kit is active. Consent Mode is required for Site Kit to receive consent signals."
-msgstr "Pakotettu päälle koska Google Site Kit on aktiivinen. Consent Mode tarvitaan, jotta Site Kit vastaanottaa suostumussignaalit."
+msgid "Banner style, colors, and policy page can be set per language. Settings not customized for a language fall back to the default language values."
+msgstr "Bannerin tyyli, värit ja tietosuojasivu voidaan asettaa kielikohtaisesti. Asetukset, joita ei ole mukautettu tietylle kielelle, palaavat oletuskielen arvoihin."
 
 #: includes/class-admin.php
-msgid "Site Kit is handling consent defaults. This plugin will only send consent updates after user choice — no duplicate defaults."
-msgstr "Site Kit hoitaa suostumusoletukset. Tämä lisäosa lähettää vain suostumuspäivitykset käyttäjän valinnan jälkeen — ei duplikaatteja."
+msgid "AI prompts"
+msgstr "Tekoälykehotteet"
+
+#: includes/class-admin.php
+msgid "AI prompts for cookie descriptions and policy pages are automatically generated in the language matching the current admin locale."
+msgstr "Tekoälykehotteet evästekuvauksille ja tietosuojasivuille luodaan automaattisesti ylläpitonäkymän kielen mukaisesti."
+
+#: includes/class-admin.php
+msgid "Shortcodes"
+msgstr "Lyhytkoodit"
+
+#: includes/class-admin.php
+msgid "Displays the full cookie declaration table on your policy page."
+msgstr "Näyttää täydellisen evästeluettelotaulukon tietosuojasivullasi."
+
+#: includes/class-admin.php
+msgid "Renders a link that opens the cookie settings dialog. Use in footers, menus, or widgets. Customize the link text with the text attribute, e.g. [kncc_cookie_settings text=\"Manage cookies\"]."
+msgstr "Näyttää linkin, joka avaa evästeasetusikkunan. Käytä alatunnisteissa, valikoissa tai widgeteissä. Mukauta linkkiteksti text-attribuutilla, esim. [kncc_cookie_settings text=\"Hallitse evästeitä\"]."
+
+#: includes/class-admin.php
+msgid "I made this plugin for free because I got frustrated by the existing cookie consent plugins — too much bloat and useless features. If you like it and want to buy me a coffee, you can do it here:"
+msgstr "Tein tämän lisäosan, koska turhauduin olemassa oleviin evästelisäosiin. Jos pidät siitä ja haluat ostaa minulle kahvin, voit tehdä sen täältä:"

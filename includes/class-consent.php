@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class KCC_Consent {
+class KNCC_Consent {
 
   public function __construct() {
     add_action('wp_enqueue_scripts', array($this, 'enqueue_assets'));
@@ -16,34 +16,35 @@ class KCC_Consent {
       return;
     }
 
-    $settings = kcc_get_settings();
+    $settings = kncc_get_settings();
 
     wp_enqueue_style(
-      'kcc-consent',
-      KCC_PLUGIN_URL . 'assets/consent.css',
+      'kncc-consent',
+      KNCC_PLUGIN_URL . 'assets/consent.css',
       array(),
-      KCC_VERSION
+      KNCC_VERSION
     );
 
     wp_enqueue_script(
-      'kcc-consent',
-      KCC_PLUGIN_URL . 'assets/consent.js',
+      'kncc-consent',
+      KNCC_PLUGIN_URL . 'assets/consent.js',
       array(),
-      KCC_VERSION,
+      KNCC_VERSION,
       true
     );
 
-    wp_add_inline_script('kcc-consent', 'window.kccConfig=' . wp_json_encode(array(
+    wp_add_inline_script('kncc-consent', 'window.knccConfig=' . wp_json_encode(array(
       'consentMode' => !empty($settings['consent_mode']),
       'ajaxUrl'     => admin_url('admin-ajax.php'),
+      'statsNonce'  => wp_create_nonce('kncc_stats'),
     )) . ';', 'before');
 
     $css_vars = sprintf(
-      ':root{--kcc-primary:%s;--kcc-primary-hover:%s;--kcc-primary-text:#fff;}',
+      ':root{--kncc-primary:%s;--kncc-primary-hover:%s;--kncc-primary-text:#fff;}',
       esc_attr($settings['primary_color']),
       esc_attr($this->darken_color($settings['primary_color'], 15))
     );
-    wp_add_inline_style('kcc-consent', $css_vars);
+    wp_add_inline_style('kncc-consent', $css_vars);
   }
 
   public function render_banner() {
@@ -51,11 +52,11 @@ class KCC_Consent {
       return;
     }
 
-    $settings = kcc_get_settings();
-    $style = esc_attr($settings['banner_style']);
+    $settings = kncc_get_localized_texts();
+    $style = $settings['banner_style'];
     $text_style_mode = (isset($settings['text_style_mode']) && $settings['text_style_mode'] === 'plugin') ? 'plugin' : 'theme';
 
-    $all_cats = kcc_get_categories();
+    $all_cats = kncc_get_categories();
     $categories = array();
     $cat_descriptions = array();
     foreach ($all_cats as $key => $data) {
@@ -66,7 +67,7 @@ class KCC_Consent {
     $policy_link = '';
     if (!empty($settings['policy_page_id'])) {
       $policy_page_id = $settings['policy_page_id'];
-      $policy_page_id = apply_filters('wpml_object_id', $policy_page_id, 'page', true);
+      $policy_page_id = apply_filters('wpml_object_id', $policy_page_id, 'page', true); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML API hook.
       if (function_exists('pll_get_post')) {
         $translated_id = pll_get_post($policy_page_id);
         if ($translated_id) {
@@ -79,53 +80,53 @@ class KCC_Consent {
       }
     }
     ?>
-    <div id="kcc-banner"
-         class="kcc-banner kcc-banner--<?php echo $style; ?> kcc-typography--<?php echo esc_attr($text_style_mode); ?>"
+    <div id="kncc-banner"
+         class="kncc-banner kncc-banner--<?php echo esc_attr( $style ); ?> kncc-typography--<?php echo esc_attr($text_style_mode); ?>"
          role="dialog"
          aria-modal="true"
          aria-label="<?php esc_attr_e('Cookie consent', 'kansleri-cookie-consent'); ?>"
          style="display:none;">
 
       <?php if ($style === 'modal') : ?>
-        <div class="kcc-overlay"></div>
+        <div class="kncc-overlay"></div>
       <?php endif; ?>
 
-      <div class="kcc-inner">
-        <div class="kcc-main">
-          <h2 class="kcc-heading"><?php echo esc_html(kcc_translate_setting($settings['heading_text'], 'heading_text')); ?></h2>
-          <p class="kcc-desc"><?php echo esc_html(kcc_translate_setting($settings['description_text'], 'description_text')); ?>
+      <div class="kncc-inner">
+        <div class="kncc-main">
+          <h2 class="kncc-heading"><?php echo esc_html($settings['heading_text']); ?></h2>
+          <p class="kncc-desc"><?php echo esc_html($settings['description_text']); ?>
             <?php if ($policy_link) : ?>
-              <a href="<?php echo esc_url($policy_link); ?>" class="kcc-policy-link" target="_blank"><?php esc_html_e('Cookie Policy', 'kansleri-cookie-consent'); ?></a>
+              <a href="<?php echo esc_url($policy_link); ?>" class="kncc-policy-link" target="_blank"><?php esc_html_e('Cookie Policy', 'kansleri-cookie-consent'); ?></a>
             <?php endif; ?>
           </p>
 
-          <div class="kcc-actions">
-            <button type="button" class="kcc-btn kcc-btn--primary" data-kcc="accept"><?php echo esc_html(kcc_translate_setting($settings['accept_text'], 'accept_text')); ?></button>
-            <button type="button" class="kcc-btn kcc-btn--secondary" data-kcc="reject"><?php echo esc_html(kcc_translate_setting($settings['reject_text'], 'reject_text')); ?></button>
-            <button type="button" class="kcc-btn kcc-btn--link" data-kcc="toggle-details"><?php echo esc_html(kcc_translate_setting($settings['customize_text'], 'customize_text')); ?></button>
-            <button type="button" class="kcc-btn kcc-btn--link" data-kcc="close"><?php esc_html_e('Close', 'kansleri-cookie-consent'); ?></button>
+          <div class="kncc-actions">
+            <button type="button" class="kncc-btn kncc-btn--primary" data-kncc="accept"><?php echo esc_html($settings['accept_text']); ?></button>
+            <button type="button" class="kncc-btn kncc-btn--secondary" data-kncc="reject"><?php echo esc_html($settings['reject_text']); ?></button>
+            <button type="button" class="kncc-btn kncc-btn--link" data-kncc="toggle-details"><?php echo esc_html($settings['customize_text']); ?></button>
+            <button type="button" class="kncc-btn kncc-btn--link" data-kncc="close"><?php esc_html_e('Close', 'kansleri-cookie-consent'); ?></button>
           </div>
         </div>
 
-        <div class="kcc-details" style="display:none;">
+        <div class="kncc-details" style="display:none;">
           <?php foreach ($categories as $key => $label) : ?>
-            <div class="kcc-category">
-              <label class="kcc-category__label">
+            <div class="kncc-category">
+              <label class="kncc-category__label">
                 <input
                   type="checkbox"
-                  class="kcc-category__check"
+                  class="kncc-category__check"
                   data-category="<?php echo esc_attr($key); ?>"
                   <?php echo $key === 'necessary' ? 'checked disabled' : ''; ?>
                 />
-                <span class="kcc-category__toggle"></span>
-                <span class="kcc-category__name"><?php echo esc_html($label); ?></span>
+                <span class="kncc-category__toggle"></span>
+                <span class="kncc-category__name"><?php echo esc_html($label); ?></span>
               </label>
-              <p class="kcc-category__desc"><?php echo esc_html($cat_descriptions[$key]); ?></p>
+              <p class="kncc-category__desc"><?php echo esc_html($cat_descriptions[$key]); ?></p>
             </div>
           <?php endforeach; ?>
 
-          <div class="kcc-details-actions">
-            <button type="button" class="kcc-btn kcc-btn--primary" data-kcc="save"><?php echo esc_html(kcc_translate_setting($settings['save_text'], 'save_text')); ?></button>
+          <div class="kncc-details-actions">
+            <button type="button" class="kncc-btn kncc-btn--primary" data-kncc="save"><?php echo esc_html($settings['save_text']); ?></button>
           </div>
         </div>
       </div>
@@ -133,8 +134,8 @@ class KCC_Consent {
 
     <?php if (!empty($settings['show_floating_btn'])) : ?>
       <button type="button"
-              id="kcc-floating-btn"
-              class="kcc-floating-btn kcc-typography--<?php echo esc_attr($text_style_mode); ?>"
+              id="kncc-floating-btn"
+              class="kncc-floating-btn kncc-typography--<?php echo esc_attr($text_style_mode); ?>"
               aria-label="<?php esc_attr_e('Cookie settings', 'kansleri-cookie-consent'); ?>"
               title="<?php esc_attr_e('Cookie settings', 'kansleri-cookie-consent'); ?>"
               style="display:none;">

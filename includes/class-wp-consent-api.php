@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class KCC_WP_Consent_API {
+class KNCC_WP_Consent_API {
 
   public function __construct() {
     add_filter('wp_consent_api_registered_kansleri-cookie-consent', '__return_true');
@@ -33,31 +33,29 @@ class KCC_WP_Consent_API {
       'preferences' => 'preferences',
     ));
 
-    $js = <<<JS
-(function(){
-  if(typeof wp_set_consent!=='function')return;
-  var map={$category_map};
-  function sync(){
-    var m=document.cookie.match(/(?:^|; )kcc_consent=([^;]*)/);
-    if(!m)return;
-    try{
-      var c=JSON.parse(decodeURIComponent(m[1]));
-      wp_set_consent('functional','allow');
-      for(var k in map){
-        if(map.hasOwnProperty(k)){
-          wp_set_consent(map[k],c[k]?'allow':'deny');
-        }
-      }
-    }catch(e){}
-  }
-  sync();
-  document.addEventListener('click',function(e){
-    var t=e.target.closest&&e.target.closest('[data-kcc]');
-    if(t){setTimeout(sync,100);}
-  });
-})();
-JS;
+    $js = '(function(){' .
+      'if(typeof wp_set_consent!=="function")return;' .
+      'var map=' . $category_map . ';' .
+      'function sync(){' .
+        'var m=document.cookie.match(/(?:^|; )kncc_consent=([^;]*)/);' .
+        'if(!m)return;' .
+        'try{' .
+          'var c=JSON.parse(decodeURIComponent(m[1]));' .
+          'wp_set_consent("functional","allow");' .
+          'for(var k in map){' .
+            'if(map.hasOwnProperty(k)){' .
+              'wp_set_consent(map[k],c[k]?"allow":"deny");' .
+            '}' .
+          '}' .
+        '}catch(e){}' .
+      '}' .
+      'sync();' .
+      'document.addEventListener("click",function(e){' .
+        'var t=e.target.closest&&e.target.closest("[data-kncc]");' .
+        'if(t){setTimeout(sync,100);}' .
+      '});' .
+    '})();';
 
-    wp_add_inline_script('kcc-consent', $js, 'after');
+    wp_add_inline_script('kncc-consent', $js, 'after');
   }
 }

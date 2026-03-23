@@ -1,5 +1,14 @@
 # Kansleri Cookie Consent
 
+> **This plugin is now available on WordPress.org!**
+> Install it directly from your WordPress dashboard: **Plugins > Add New > Search "Kansleri Cookie Consent"**
+>
+> **[Download from WordPress.org](https://wordpress.org/plugins/kansleri-cookie-consent/)**
+>
+> Future updates are delivered through WordPress.org. This GitHub repository is maintained as a public mirror for reference and issue tracking.
+
+---
+
 Lightweight WordPress cookie consent plugin with full Google Consent Mode v2 support. No bloat, no ads, no build step needed.
 
 ## Features
@@ -8,7 +17,9 @@ Lightweight WordPress cookie consent plugin with full Google Consent Mode v2 sup
 - **GTM dataLayer** — pushes `consent_update` events for tag firing
 - **Cookie scanner** — discovers cookies via iframe scan and auto-identifies 40+ known cookies (Google Analytics, Meta, HubSpot, WordPress, Cloudflare, Hotjar, etc.)
 - **AI-assisted cookie descriptions** — copy a ready-made prompt, paste into ChatGPT/Claude/Gemini, import the result back as JSON
-- **Cookie policy page** — auto-creates a policy page with the `[kcc_cookie_policy]` shortcode
+- **Cookie policy page** — auto-creates a policy page with the `[kncc_cookie_policy]` shortcode
+- **YouTube & Vimeo iframe blocking** — video embeds blocked until marketing cookies accepted, with placeholder and accept button
+- **`[kncc_cookie_settings]` shortcode** — add a cookie settings link anywhere (footer, menu, widgets)
 - **Three banner styles** — bottom bar, centered modal, or corner popup
 - **Category-based consent** — Necessary, Analytics, Marketing, Preferences
 - **Theme or Plugin typography** — inherit site fonts or use strict plugin-defined styling
@@ -17,7 +28,7 @@ Lightweight WordPress cookie consent plugin with full Google Consent Mode v2 sup
 - **Consent statistics** — daily breakdown of accept/reject/custom choices with Chart.js visualization (no personal data stored)
 - **Google Site Kit integration** — auto-detects Site Kit and avoids duplicate consent defaults
 - **WP Consent API integration** — shares consent status with other plugins
-- **WPML & Polylang support** — translatable banner texts, auto-resolves translated policy pages
+- **WPML & Polylang support** — per-language banner texts, cookie descriptions, banner style, colors, and policy page
 - **Finnish translation included** — full `fi` locale with auto-localized defaults
 - **Daily cron check** — automatically monitors cookies for missing descriptions
 - **Documentations tab** — built-in installation guide and option explanations
@@ -30,9 +41,18 @@ Lightweight WordPress cookie consent plugin with full Google Consent Mode v2 sup
 
 ## Installation
 
-1. Upload the `kansleri-cookie-consent` folder to `/wp-content/plugins/`
-2. Activate the plugin in **Plugins** > **Installed Plugins**
-3. Go to **Settings** > **Cookie Consent** to configure
+The recommended way is to install directly from WordPress.org:
+
+1. In your WordPress admin, go to **Plugins > Add New**
+2. Search for **"Kansleri Cookie Consent"**
+3. Click **Install Now**, then **Activate**
+4. Go to **Settings > Cookie Consent** to configure
+
+### Manual installation
+
+1. Download the latest release from [WordPress.org](https://wordpress.org/plugins/kansleri-cookie-consent/)
+2. Upload the `kansleri-cookie-consent` folder to `/wp-content/plugins/`
+3. Activate the plugin in **Plugins > Installed Plugins**
 
 ## Configuration
 
@@ -51,7 +71,7 @@ Lightweight WordPress cookie consent plugin with full Google Consent Mode v2 sup
 
 ### Policy Page tab
 - Select or create a cookie policy page
-- Add the `[kcc_cookie_policy]` shortcode to display a categorized cookie table
+- Add the `[kncc_cookie_policy]` shortcode to display a categorized cookie table
 
 ### Integration tab
 - Enable/disable Google Consent Mode v2
@@ -70,64 +90,12 @@ Lightweight WordPress cookie consent plugin with full Google Consent Mode v2 sup
 - Explanation of every plugin option
 - Troubleshooting tips
 
-## How the scanner works
+## Multilingual support (WPML & Polylang)
 
-The scanner loads your homepage in a hidden iframe, reads all cookies set by the page, and compares them against a built-in database of 40+ known cookie patterns. Recognized cookies are automatically grouped by provider (Google, Meta, WordPress, etc.) with pre-filled category, duration, and description. Unknown cookies are added to the table for categorization — use the AI helper to generate descriptions.
-
-## Google Consent Mode v2
-
-When enabled, the plugin:
-
-1. Outputs `gtag('consent', 'default', {...})` in `<head>` with priority 1 (before GTM)
-2. On page load, reads the `kcc_consent` cookie and calls `gtag('consent', 'update', {...})` if preferences exist
-3. When the visitor makes a choice, updates consent in real-time and pushes a `consent_update` event to the dataLayer
-
-If Google Site Kit is active and managing consent mode, the plugin skips its own default output to avoid duplicates and only sends consent updates.
-
-### Consent mapping
-
-| Category    | Consent Mode signals                                          |
-|-------------|---------------------------------------------------------------|
-| Analytics   | `analytics_storage`                                           |
-| Marketing   | `ad_storage`, `ad_user_data`, `ad_personalization`            |
-| Preferences | `functionality_storage`, `personalization_storage`            |
-| Necessary   | `security_storage` (always granted)                           |
-
-## Translations
-
-The plugin ships with a full Finnish (`fi`) translation. When the WordPress site language is set to Finnish, all admin UI and frontend banner texts are displayed in Finnish. Default banner texts are automatically localized on first run.
-
-### WPML
-A `wpml-config.xml` file registers all user-editable banner texts for WPML String Translation. Policy page links auto-resolve to the translated page.
-
-### Polylang
-Banner texts are registered via `pll_register_string()` and appear in Polylang's Strings translations screen. Policy page links auto-resolve via `pll_get_post()`.
-
-## File structure
-
-```
-kansleri-cookie-consent/
-├── kansleri-cookie-consent.php   # Main plugin file
-├── wpml-config.xml               # WPML string registration
-├── includes/
-│   ├── class-admin.php           # Admin settings page + statistics
-│   ├── class-scanner.php         # Cookie scanner + known cookies DB
-│   ├── class-consent.php         # Frontend banner rendering + assets
-│   ├── class-consent-mode.php    # Google Consent Mode v2 + Site Kit compat
-│   ├── class-policy-page.php     # Policy page + shortcode
-│   ├── class-wp-consent-api.php  # WP Consent API bridge
-│   └── class-stats.php           # Consent statistics tracking
-├── assets/
-│   ├── admin.css                 # Admin styles
-│   ├── admin.js                  # Admin interactions + scanner UI
-│   ├── consent.css               # Frontend banner styles
-│   └── consent.js                # Frontend consent logic
-├── languages/
-│   ├── kansleri-cookie-consent.pot          # Translation template
-│   ├── kansleri-cookie-consent-fi.po        # Finnish translation source
-│   └── kansleri-cookie-consent-fi.mo        # Finnish translation binary
-└── .gitignore
-```
+- **Per-language banner texts** — switch language in admin bar and edit General tab settings
+- **Per-language cookie descriptions** — cookie structure is shared, only descriptions are translatable
+- **Per-language settings** — banner style, colors, and policy page can differ per language
+- **AI prompts** — auto-generated in the current admin language
 
 ## License
 

@@ -4,11 +4,11 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class KCC_Scanner {
+class KNCC_Scanner {
 
   public function __construct() {
-    add_action('wp_ajax_kcc_process_scan', array($this, 'process_scan'));
-    add_action('kcc_daily_cookie_check', array($this, 'cron_check_cookies'));
+    add_action('wp_ajax_kncc_process_scan', array($this, 'process_scan'));
+    add_action('kncc_daily_cookie_check', array($this, 'cron_check_cookies'));
   }
 
   /**
@@ -76,7 +76,7 @@ class KCC_Scanner {
       array('pattern' => '/^_hj/', 'provider' => 'Hotjar', 'category' => 'analytics', 'duration' => 'Varies', 'description' => 'Hotjar: tracks user behaviour and feedback.'),
 
       // Consent cookie itself
-      array('pattern' => '/^kcc_consent$/', 'provider' => 'Kansleri Cookie Consent', 'category' => 'necessary', 'duration' => '1 year', 'description' => 'Stores your cookie consent preferences.'),
+      array('pattern' => '/^kncc_consent$/', 'provider' => 'Kansleri Cookie Consent', 'category' => 'necessary', 'duration' => '1 year', 'description' => 'Stores your cookie consent preferences.'),
     );
   }
 
@@ -95,16 +95,14 @@ class KCC_Scanner {
   }
 
   public function process_scan() {
-    @ini_set('display_errors', 0);
-
-    check_ajax_referer('kcc_admin', 'nonce');
+    check_ajax_referer('kncc_admin', 'nonce');
 
     if (!current_user_can('manage_options')) {
       wp_send_json_error('Unauthorized');
     }
 
     $found = isset($_POST['found']) ? array_map('sanitize_text_field', wp_unslash($_POST['found'])) : array();
-    $existing = kcc_get_cookies();
+    $existing = kncc_get_cookies();
 
     $known_names = array();
     foreach ($existing as $c) {
@@ -146,7 +144,7 @@ class KCC_Scanner {
     }
 
     if (!empty($auto_added)) {
-      update_option('kcc_cookies', $existing);
+      update_option('kncc_cookies', $existing);
     }
 
     wp_send_json_success(array(
@@ -157,7 +155,7 @@ class KCC_Scanner {
   }
 
   public static function get_incomplete_cookies() {
-    $cookies = kcc_get_cookies();
+    $cookies = kncc_get_cookies();
     $incomplete = array();
     foreach ($cookies as $cookie) {
       if (empty($cookie['description'])) {
@@ -171,13 +169,13 @@ class KCC_Scanner {
     try {
       $incomplete = self::get_incomplete_cookies();
       if (!empty($incomplete)) {
-        update_option('kcc_incomplete_cookies', $incomplete, false);
+        update_option('kncc_incomplete_cookies', $incomplete, false);
       } else {
-        delete_option('kcc_incomplete_cookies');
+        delete_option('kncc_incomplete_cookies');
       }
-      delete_option('kcc_cron_error');
+      delete_option('kncc_cron_error');
     } catch (\Throwable $e) {
-      update_option('kcc_cron_error', $e->getMessage(), false);
+      update_option('kncc_cron_error', $e->getMessage(), false);
     }
   }
 }

@@ -1,499 +1,708 @@
-# Copyright (C) 2024 Kansleri.fi
-# This file is distributed under the GPLv2 or later.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Kansleri Cookie Consent package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Kansleri Cookie Consent 1.0.3\n"
+"Project-Id-Version: Kansleri Cookie Consent 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 00:00+0000\n"
+"POT-Creation-Date: 2026-03-05 18:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:43 kansleri-cookie-consent.php:143
+msgid "We use cookies"
+msgstr ""
+
+#: kansleri-cookie-consent.php:44 kansleri-cookie-consent.php:144
+msgid ""
+"We use cookies to improve your experience and analyze site traffic. Choose "
+"which cookies you allow."
+msgstr ""
+
+#: kansleri-cookie-consent.php:45 kansleri-cookie-consent.php:145
+msgid "Accept all"
+msgstr ""
+
+#: kansleri-cookie-consent.php:46 kansleri-cookie-consent.php:146
+msgid "Reject all"
+msgstr ""
+
+#: kansleri-cookie-consent.php:47 kansleri-cookie-consent.php:147
+msgid "Customize"
+msgstr ""
+
+#: kansleri-cookie-consent.php:48 kansleri-cookie-consent.php:148
+msgid "Save preferences"
+msgstr ""
+
+#: kansleri-cookie-consent.php:75 includes/class-admin.php:278
 msgid "Necessary"
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:76
 msgid "Required for the website to function. Cannot be disabled."
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:79 includes/class-admin.php:279
 msgid "Analytics"
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:80
 msgid "Help us understand how visitors interact with the website."
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:83 includes/class-admin.php:280
 msgid "Marketing"
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:84
 msgid "Used to deliver relevant advertisements and track campaigns."
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:87 includes/class-admin.php:281
 msgid "Preferences"
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:88
 msgid "Remember your settings and preferences for a better experience."
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:219
 msgid "Settings"
 msgstr ""
 
-#: kansleri-cookie-consent.php
-msgid "Kansleri Cookie Consent is now active. Next steps: %1$s to discover cookies and %2$s to review banner and consent settings."
+#: kansleri-cookie-consent.php:242
+#, php-format
+msgid ""
+"Kansleri Cookie Consent is now active. Next steps: %1$s to discover cookies "
+"and %2$s to review banner and consent settings."
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:243
 msgid "Scan cookies"
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:244
 msgid "review settings"
 msgstr ""
 
-#: kansleri-cookie-consent.php
-msgid "Cookie Consent: %1$d cookie(s) are missing descriptions: %2$s. %3$s to add them."
+#: kansleri-cookie-consent.php:275
+#, php-format
+msgid ""
+"Cookie Consent: %1$d cookie(s) are missing descriptions: %2$s. %3$s to add "
+"them."
 msgstr ""
 
-#: kansleri-cookie-consent.php
+#: kansleri-cookie-consent.php:278
 msgid "Go to Cookies tab"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Cookie Consent"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Settings saved."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "An error occurred."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Scanning..."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Scan complete."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "No new cookies found."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Remove this cookie?"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Scan Cookies"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Invalid JSON format. Please import a valid cookie array."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Cookies imported into the table. Save cookies to persist changes."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "No valid cookies found in imported JSON."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "No cookie rows available to export."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "AI prompt copied to clipboard."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Could not copy prompt automatically. Copy it manually from the prompt dialog."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "All cookies are done! Every cookie has a description."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "General"
-msgstr ""
-
-#: includes/class-admin.php
+#: kansleri-cookie-consent.php:291 includes/class-admin.php:98
 msgid "Cookies"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Policy Page"
+#: kansleri-cookie-consent.php:292
+msgid ""
+"This site uses a cookie consent banner powered by Kansleri Cookie Consent. "
+"When you interact with the banner, a cookie named <code>kncc_consent</code> "
+"is stored in your browser for up to 1 year. It records your consent "
+"preferences (which cookie categories you accepted or rejected) so the site "
+"can remember your choice on future visits. No personal data is stored in "
+"this cookie."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Integration"
+#: kansleri-cookie-consent.php:293
+msgid ""
+"The plugin also records anonymous, aggregated consent statistics (how many "
+"visitors accepted, rejected, or customized cookies each day). No IP "
+"addresses, user identifiers, or personal data are collected or stored as "
+"part of these statistics."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Documentations"
+#: includes/class-admin.php:18 includes/class-admin.php:19
+#: includes/class-admin.php:89
+msgid "Cookie Consent"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Banner style"
+#: includes/class-admin.php:62 includes/class-admin.php:693
+msgid "Settings saved."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Bottom bar"
+#: includes/class-admin.php:63
+msgid "An error occurred."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Centered modal"
+#: includes/class-admin.php:64
+msgid "Scanning..."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Corner popup"
+#: includes/class-admin.php:65
+msgid "Scan complete."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Primary color"
+#: includes/class-admin.php:66
+msgid "No new cookies found."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Text and font style"
+#: includes/class-admin.php:67
+msgid "Remove this cookie?"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Theme style (inherit site typography)"
+#: includes/class-admin.php:68 includes/class-admin.php:228
+#: includes/class-admin.php:464
+msgid "Scan Cookies"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Plugin style (strict font sizes/colors)"
+#: includes/class-admin.php:69
+msgid "Invalid JSON format. Please import a valid cookie array."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Use Theme style by default. Switch to Plugin style if your theme typography makes the banner hard to read."
+#: includes/class-admin.php:70
+msgid "Cookies imported into the table. Save cookies to persist changes."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Heading text"
+#: includes/class-admin.php:71
+msgid "No valid cookies found in imported JSON."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Description text"
+#: includes/class-admin.php:72
+msgid "No cookie rows available to export."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Accept button text"
+#: includes/class-admin.php:73
+msgid "AI prompt copied to clipboard."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Reject button text"
+#: includes/class-admin.php:74
+msgid ""
+"Could not copy prompt automatically. Copy it manually from the prompt dialog."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Customize button text"
+#: includes/class-admin.php:75
+msgid "All cookies are done! Every cookie has a description."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Save preferences button text"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Floating settings button"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Show a small floating button so visitors can re-open their cookie preferences"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Save Settings"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Add Cookie"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Need help describing these cookies?"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Click the button below to copy a ready-made AI prompt with your cookie data."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Paste the prompt into an AI tool (ChatGPT, Claude, Gemini, etc.)."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "The AI will return improved JSON with clear cookie descriptions."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Copy the AI response and paste it into the text box that appears below."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Click Import — cookies are saved automatically."
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Copy AI Prompt to Clipboard"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Paste the AI response here:"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "[{\"name\":\"_ga\",\"category\":\"analytics\", ...}]"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Import"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Name"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Category"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Provider"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Duration"
-msgstr ""
-
-#: includes/class-admin.php
-msgid "Description"
-msgstr ""
-
-#: includes/class-admin.php
+#: includes/class-admin.php:76 includes/class-admin.php:271
 msgid "No cookies registered yet."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:77 includes/class-admin.php:287
 msgid "Remove"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:95
+msgid "General"
+msgstr ""
+
+#: includes/class-admin.php:101
+msgid "Policy Page"
+msgstr ""
+
+#: includes/class-admin.php:104
+msgid "Integration"
+msgstr ""
+
+#: includes/class-admin.php:107
+msgid "Statistics"
+msgstr ""
+
+#: includes/class-admin.php:110
+msgid "Documentations"
+msgstr ""
+
+#: includes/class-admin.php:147 includes/class-admin.php:455
+msgid "Banner style"
+msgstr ""
+
+#: includes/class-admin.php:150
+msgid "Bottom bar"
+msgstr ""
+
+#: includes/class-admin.php:151
+msgid "Centered modal"
+msgstr ""
+
+#: includes/class-admin.php:152
+msgid "Corner popup"
+msgstr ""
+
+#: includes/class-admin.php:157 includes/class-admin.php:456
+msgid "Primary color"
+msgstr ""
+
+#: includes/class-admin.php:163 includes/class-admin.php:457
+msgid "Text and font style"
+msgstr ""
+
+#: includes/class-admin.php:166
+msgid "Theme style (inherit site typography)"
+msgstr ""
+
+#: includes/class-admin.php:167
+msgid "Plugin style (strict font sizes/colors)"
+msgstr ""
+
+#: includes/class-admin.php:169
+msgid ""
+"Use Theme style by default. Switch to Plugin style if your theme typography "
+"makes the banner hard to read."
+msgstr ""
+
+#: includes/class-admin.php:173
+msgid "Heading text"
+msgstr ""
+
+#: includes/class-admin.php:179
+msgid "Description text"
+msgstr ""
+
+#: includes/class-admin.php:185
+msgid "Accept button text"
+msgstr ""
+
+#: includes/class-admin.php:189
+msgid "Reject button text"
+msgstr ""
+
+#: includes/class-admin.php:193
+msgid "Customize button text"
+msgstr ""
+
+#: includes/class-admin.php:197
+msgid "Save preferences button text"
+msgstr ""
+
+#: includes/class-admin.php:201 includes/class-admin.php:459
+msgid "Floating settings button"
+msgstr ""
+
+#: includes/class-admin.php:205
+msgid ""
+"Show a small floating button so visitors can re-open their cookie preferences"
+msgstr ""
+
+#: includes/class-admin.php:211 includes/class-admin.php:324
+#: includes/class-admin.php:432
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-admin.php:229
+msgid "Add Cookie"
+msgstr ""
+
+#: includes/class-admin.php:233
+msgid "Need help describing these cookies?"
+msgstr ""
+
+#: includes/class-admin.php:235
+msgid ""
+"Click the button below to copy a ready-made AI prompt with your cookie data."
+msgstr ""
+
+#: includes/class-admin.php:236
+msgid "Paste the prompt into an AI tool (ChatGPT, Claude, Gemini, etc.)."
+msgstr ""
+
+#: includes/class-admin.php:237
+msgid "The AI will return improved JSON with clear cookie descriptions."
+msgstr ""
+
+#: includes/class-admin.php:238
+msgid "Copy the AI response and paste it into the text box that appears below."
+msgstr ""
+
+#: includes/class-admin.php:239
+msgid "Click Import — cookies are saved automatically."
+msgstr ""
+
+#: includes/class-admin.php:243
+msgid "Copy AI Prompt to Clipboard"
+msgstr ""
+
+#: includes/class-admin.php:247
+msgid "Paste the AI response here:"
+msgstr ""
+
+#: includes/class-admin.php:248
+msgid "[{\"name\":\"_ga\",\"category\":\"analytics\", ...}]"
+msgstr ""
+
+#: includes/class-admin.php:250
+msgid "Import"
+msgstr ""
+
+#: includes/class-admin.php:261
+msgid "Name"
+msgstr ""
+
+#: includes/class-admin.php:262
+msgid "Category"
+msgstr ""
+
+#: includes/class-admin.php:263 includes/class-policy-page.php:85
+msgid "Provider"
+msgstr ""
+
+#: includes/class-admin.php:264 includes/class-policy-page.php:87
+msgid "Duration"
+msgstr ""
+
+#: includes/class-admin.php:265
+msgid "Description"
+msgstr ""
+
+#: includes/class-admin.php:294 includes/class-admin.php:466
 msgid "Save Cookies"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:307 includes/class-admin.php:471
 msgid "Cookie policy page"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:310
 msgid "— Select a page —"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Select a page or use the button below to create one. Add the shortcode [kcc_cookie_policy] to its content."
+#: includes/class-admin.php:318
+msgid ""
+"Select a page or use the button below to create one. Add the shortcode "
+"[kncc_cookie_policy] to its content."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:332
 msgid "Preview Policy Page"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:344
+msgid "Detected integrations"
+msgstr ""
+
+#: includes/class-admin.php:352
+msgid ""
+"Active — Site Kit manages consent defaults. This plugin sends consent "
+"updates only."
+msgstr ""
+
+#: includes/class-admin.php:354
+msgid ""
+"Active — Site Kit consent mode not enabled. This plugin handles all consent "
+"signals."
+msgstr ""
+
+#: includes/class-admin.php:357
+msgid ""
+"Not installed. No action needed — this plugin handles consent signals "
+"independently."
+msgstr ""
+
+#: includes/class-admin.php:367
+msgid ""
+"Active — consent status is shared with other plugins via the WP Consent API."
+msgstr ""
+
+#: includes/class-admin.php:369
+msgid ""
+"Not installed. Optional — install it if other plugins need to read consent "
+"status."
+msgstr ""
+
+#: includes/class-admin.php:380 includes/class-admin.php:476
 msgid "Google Consent Mode v2"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Enable Consent Mode v2 (outputs consent defaults in &lt;head&gt; before GTM)"
+#: includes/class-admin.php:384
+msgid ""
+"Enable Consent Mode v2 (outputs consent defaults in &lt;head&gt; before GTM)"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Consent Mode tells Google tags what the visitor has allowed (for example analytics or ads). This plugin sends a denied-by-default signal before tags run, and sends an updated signal after the visitor chooses. It controls consent signals only: you still need to install GTM/GA scripts separately."
+#: includes/class-admin.php:392
+msgid ""
+"Forced on because Google Site Kit is active. Consent Mode is required for "
+"Site Kit to receive consent signals."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:396
+msgid ""
+"Consent Mode tells Google tags what the visitor has allowed (for example "
+"analytics or ads). This plugin sends a denied-by-default signal before tags "
+"run, and sends an updated signal after the visitor chooses. It controls "
+"consent signals only: you still need to install GTM/GA scripts separately."
+msgstr ""
+
+#: includes/class-admin.php:401
+msgid ""
+"Site Kit is handling consent defaults. This plugin will only send consent "
+"updates after user choice — no duplicate defaults."
+msgstr ""
+
+#: includes/class-admin.php:407 includes/class-admin.php:477
 msgid "GTM Container ID"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "The Container ID is your Google Tag Manager workspace identifier (format: GTM-XXXXXXX), found in GTM top bar or Admin. In this plugin it is a reference field to keep configuration documented; it does not automatically embed the GTM code snippet."
+#: includes/class-admin.php:410
+msgid ""
+"The Container ID is your Google Tag Manager workspace identifier (format: "
+"GTM-XXXXXXX), found in GTM top bar or Admin. In this plugin it is a "
+"reference field to keep configuration documented; it does not automatically "
+"embed the GTM code snippet."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:417
 msgid "Consent Mode defaults (auto-injected in &lt;head&gt;)"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:441
 msgid "Installation guide"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:443
 msgid "Activate the plugin and open Settings > Cookie Consent."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:444
 msgid "Configure banner texts, style, and button labels in the General tab."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Open the Integration tab and enable Google Consent Mode v2 if you use GTM/Google tags."
+#: includes/class-admin.php:445
+msgid ""
+"Open the Integration tab and enable Google Consent Mode v2 if you use GTM/"
+"Google tags."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Open the Cookies tab, run Scan Cookies, then review and categorize unknown cookies."
+#: includes/class-admin.php:446
+msgid ""
+"Open the Cookies tab, run Scan Cookies, then review and categorize unknown "
+"cookies."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "If unknown cookies are found, an AI helper appears: copy the prompt, paste it into an AI tool, paste the response back into the text box, click Import, then Save Cookies."
+#: includes/class-admin.php:447
+msgid ""
+"If unknown cookies are found, an AI helper appears: copy the prompt, paste "
+"it into an AI tool, paste the response back into the text box, click Import, "
+"then Save Cookies."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:448
 msgid "Assign or create your Cookie Policy page in the Policy Page tab."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:451
 msgid "What each option means"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:453
 msgid "General tab"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:455
 msgid "Choose visual placement of the banner (bar, modal, corner)."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:456
 msgid "Controls the main accent color used by buttons and links."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Theme style inherits site typography. Plugin style uses strict sizes/colors for consistent readability."
+#: includes/class-admin.php:457
+msgid ""
+"Theme style inherits site typography. Plugin style uses strict sizes/colors "
+"for consistent readability."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:458
 msgid "Heading/Description/Button texts"
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:458
 msgid "Customize visible wording in the consent banner."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:459
 msgid "Lets visitors re-open cookie settings after they close the banner."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:462
 msgid "Cookies tab"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Scans detected cookies and auto-maps known cookies to categories when possible."
+#: includes/class-admin.php:464
+msgid ""
+"Scans detected cookies and auto-maps known cookies to categories when "
+"possible."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:465
 msgid "AI Helper"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Appears after scanning when unknown cookies are found. Copies a ready prompt to paste into an AI tool. After the AI responds, paste the JSON back into the text box and click Import."
+#: includes/class-admin.php:465
+msgid ""
+"Appears after scanning when unknown cookies are found. Copies a ready prompt "
+"to paste into an AI tool. After the AI responds, paste the JSON back into "
+"the text box and click Import."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Persists current cookie table values to be used in policy output and consent details."
+#: includes/class-admin.php:466
+msgid ""
+"Persists current cookie table values to be used in policy output and consent "
+"details."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:469
 msgid "Policy Page tab"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Selects which page is used for cookie policy content generated by shortcode."
+#: includes/class-admin.php:471
+msgid ""
+"Selects which page is used for cookie policy content generated by shortcode."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:474
 msgid "Integration tab"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "A Google framework for privacy-safe tag behavior. Before consent, storage signals are denied; after user choice, signals are updated (for example analytics_storage=granted). This helps GTM/Google tags respect user consent state."
+#: includes/class-admin.php:476
+msgid ""
+"A Google framework for privacy-safe tag behavior. Before consent, storage "
+"signals are denied; after user choice, signals are updated (for example "
+"analytics_storage=granted). This helps GTM/Google tags respect user consent "
+"state."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "Your GTM container identifier (for example GTM-N6828NL). It identifies which tag container your site uses. This field is informational in this plugin and does not inject GTM scripts."
+#: includes/class-admin.php:477
+msgid ""
+"Your GTM container identifier (for example GTM-N6828NL). It identifies which "
+"tag container your site uses. This field is informational in this plugin and "
+"does not inject GTM scripts."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:480
 msgid "Troubleshooting"
 msgstr ""
 
-#: includes/class-admin.php
-msgid "If GTM Preview does not show consent updates, verify Consent Mode v2 is enabled and test in a fresh browser session without existing consent cookie."
+#: includes/class-admin.php:482
+msgid ""
+"If GTM Preview does not show consent updates, verify Consent Mode v2 is "
+"enabled and test in a fresh browser session without existing consent cookie."
 msgstr ""
 
-#: includes/class-admin.php
-msgid "If banner typography looks odd with your theme, switch General > Text and font style to Plugin style."
+#: includes/class-admin.php:483
+msgid ""
+"If banner typography looks odd with your theme, switch General > Text and "
+"font style to Plugin style."
 msgstr ""
 
-#: includes/class-admin.php
+#: includes/class-admin.php:523
+#, php-format
+msgid "%d days"
+msgstr ""
+
+#: includes/class-admin.php:534
+msgid "Total responses"
+msgstr ""
+
+#: includes/class-admin.php:538 includes/class-admin.php:553
+#: includes/class-admin.php:563 includes/class-admin.php:580
+msgid "Accepted all"
+msgstr ""
+
+#: includes/class-admin.php:542 includes/class-admin.php:559
+#: includes/class-admin.php:565 includes/class-admin.php:582
+msgid "Rejected all"
+msgstr ""
+
+#: includes/class-admin.php:546 includes/class-admin.php:556
+#: includes/class-admin.php:564 includes/class-admin.php:581
+msgid "Custom selection"
+msgstr ""
+
+#: includes/class-admin.php:569
+msgid "Daily breakdown"
+msgstr ""
+
+#: includes/class-admin.php:598
+msgid ""
+"No consent data recorded yet. Statistics will appear after visitors start "
+"interacting with the cookie banner."
+msgstr ""
+
+#: includes/class-admin.php:613
+#, php-format
+msgid "Cron error: %s"
+msgstr ""
+
+#: includes/class-admin.php:631
+msgid "All systems are good!"
+msgstr ""
+
+#: includes/class-admin.php:633
+msgid "The plugin re-checks cookies every day via cron."
+msgstr ""
+
+#: includes/class-admin.php:638
+#, php-format
+msgid "Next check: %s"
+msgstr ""
+
+#: includes/class-admin.php:743
 msgid "Cookies saved."
 msgstr ""
 
-#: includes/class-consent.php
+#: includes/class-consent.php:87
 msgid "Cookie consent"
 msgstr ""
 
-#: includes/class-consent.php
+#: includes/class-consent.php:99 includes/class-policy-page.php:27
 msgid "Cookie Policy"
 msgstr ""
 
-#: includes/class-consent.php
+#: includes/class-consent.php:107
 msgid "Close"
 msgstr ""
 
-#: includes/class-consent.php
+#: includes/class-consent.php:139 includes/class-consent.php:140
 msgid "Cookie settings"
 msgstr ""
 
-#: includes/class-policy-page.php
+#: includes/class-policy-page.php:48
 msgid "No cookies have been registered yet."
 msgstr ""
 
-#: includes/class-policy-page.php
-msgid "These cookies are essential for the website to function and cannot be switched off."
+#: includes/class-policy-page.php:58
+msgid ""
+"These cookies are essential for the website to function and cannot be "
+"switched off."
 msgstr ""
 
-#: includes/class-policy-page.php
-msgid "These cookies help us understand how visitors interact with the website by collecting and reporting information anonymously."
+#: includes/class-policy-page.php:59
+msgid ""
+"These cookies help us understand how visitors interact with the website by "
+"collecting and reporting information anonymously."
 msgstr ""
 
-#: includes/class-policy-page.php
-msgid "These cookies are used to deliver relevant advertisements and track ad campaign performance."
+#: includes/class-policy-page.php:60
+msgid ""
+"These cookies are used to deliver relevant advertisements and track ad "
+"campaign performance."
 msgstr ""
 
-#: includes/class-policy-page.php
-msgid "These cookies allow the website to remember choices you make and provide enhanced functionality and personalisation."
+#: includes/class-policy-page.php:61
+msgid ""
+"These cookies allow the website to remember choices you make and provide "
+"enhanced functionality and personalisation."
 msgstr ""
 
-#: includes/class-policy-page.php
+#: includes/class-policy-page.php:84
 msgid "Cookie"
 msgstr ""
 
-#: includes/class-policy-page.php
+#: includes/class-policy-page.php:86
 msgid "Purpose"
 msgstr ""

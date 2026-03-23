@@ -4,17 +4,19 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-class KCC_Stats {
+class KNCC_Stats {
 
-  const OPTION_KEY = 'kcc_consent_stats';
+  const OPTION_KEY = 'kncc_consent_stats';
   const MAX_DAYS = 90;
 
   public function __construct() {
-    add_action('wp_ajax_kcc_record_consent', array($this, 'record_consent'));
-    add_action('wp_ajax_nopriv_kcc_record_consent', array($this, 'record_consent'));
+    add_action('wp_ajax_kncc_record_consent', array($this, 'record_consent'));
+    add_action('wp_ajax_nopriv_kncc_record_consent', array($this, 'record_consent'));
   }
 
   public function record_consent() {
+    check_ajax_referer('kncc_stats', 'nonce');
+
     $choice = isset($_POST['choice']) ? sanitize_key($_POST['choice']) : '';
     if (!in_array($choice, array('accept', 'reject', 'custom'), true)) {
       wp_send_json_error('Invalid choice');
@@ -36,6 +38,12 @@ class KCC_Stats {
     }
 
     update_option(self::OPTION_KEY, $stats, false);
+
+    $categories = isset($_POST['categories']) ? sanitize_text_field(wp_unslash($_POST['categories'])) : '{}';
+    if (class_exists('KNCC_Consent_Log')) {
+      KNCC_Consent_Log::record($choice, $categories);
+    }
+
     wp_send_json_success();
   }
 
