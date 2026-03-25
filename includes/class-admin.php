@@ -400,6 +400,18 @@ class KNCC_Admin {
             </p>
           </td>
         </tr>
+        <tr>
+          <th scope="row"><label for="kncc-policy-style-mode"><?php esc_html_e('Policy page style', 'kansleri-cookie-consent'); ?></label></th>
+          <td>
+            <select id="kncc-policy-style-mode" name="policy_style_mode">
+              <option value="theme" <?php selected($settings['policy_style_mode'] ?? 'theme', 'theme'); ?>><?php esc_html_e('Theme style (inherit site typography)', 'kansleri-cookie-consent'); ?></option>
+              <option value="plugin" <?php selected($settings['policy_style_mode'] ?? 'theme', 'plugin'); ?>><?php esc_html_e('Plugin style (strict font sizes/colors)', 'kansleri-cookie-consent'); ?></option>
+            </select>
+            <p class="description">
+              <?php esc_html_e('Controls the styling of the [kncc_cookie_policy] cookie declaration table.', 'kansleri-cookie-consent'); ?>
+            </p>
+          </td>
+        </tr>
       </table>
       <p class="submit">
         <button type="submit" class="button button-primary"><?php esc_html_e('Save Settings', 'kansleri-cookie-consent'); ?></button>
@@ -999,6 +1011,11 @@ class KNCC_Admin {
 
     if (isset($_POST['policy_page_id'])) {
       $values['policy_page_id'] = absint($_POST['policy_page_id']);
+    }
+
+    if (isset($_POST['policy_style_mode'])) {
+      $policy_style_mode = sanitize_key(wp_unslash($_POST['policy_style_mode']));
+      $values['policy_style_mode'] = in_array($policy_style_mode, array('theme', 'plugin'), true) ? $policy_style_mode : 'theme';
     }
 
     $values['consent_mode'] = !empty($_POST['consent_mode']);

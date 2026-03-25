@@ -42,7 +42,7 @@ class KNCC_Policy_Page {
   public function render_shortcode() {
     $cookies = kncc_get_localized_cookies();
     $settings = kncc_get_localized_settings();
-    $text_style_mode = (isset($settings['text_style_mode']) && $settings['text_style_mode'] === 'plugin') ? 'plugin' : 'theme';
+    $text_style_mode = (isset($settings['policy_style_mode']) && $settings['policy_style_mode'] === 'plugin') ? 'plugin' : 'theme';
 
     if (empty($cookies)) {
       return '<p>' . esc_html__('No cookies have been registered yet.', 'kansleri-cookie-consent') . '</p>';
@@ -73,6 +73,12 @@ class KNCC_Policy_Page {
     ob_start();
     ?>
     <div class="kncc-policy kncc-typography--<?php echo esc_attr($text_style_mode); ?>">
+      <div class="kncc-policy__edit-consent">
+        <button type="button" class="kncc-btn kncc-btn--primary kncc-edit-consent-btn"
+                onclick="if(window.knccEditConsent)window.knccEditConsent()">
+          <?php esc_html_e('Edit cookie preferences', 'kansleri-cookie-consent'); ?>
+        </button>
+      </div>
       <?php foreach ($categories as $key => $label) : ?>
         <?php if (empty($grouped[$key])) continue; ?>
         <div class="kncc-policy__section">
@@ -90,10 +96,10 @@ class KNCC_Policy_Page {
             <tbody>
               <?php foreach ($grouped[$key] as $cookie) : ?>
                 <tr>
-                  <td><code><?php echo esc_html($cookie['name']); ?></code></td>
-                  <td><?php echo esc_html($cookie['provider'] ?? ''); ?></td>
-                  <td><?php echo esc_html($cookie['description'] ?? ''); ?></td>
-                  <td><?php echo esc_html($cookie['duration'] ?? ''); ?></td>
+                  <td data-label="<?php esc_attr_e('Cookie', 'kansleri-cookie-consent'); ?>"><code><?php echo esc_html($cookie['name']); ?></code></td>
+                  <td data-label="<?php esc_attr_e('Provider', 'kansleri-cookie-consent'); ?>"><?php echo esc_html($cookie['provider'] ?? ''); ?></td>
+                  <td data-label="<?php esc_attr_e('Purpose', 'kansleri-cookie-consent'); ?>"><?php echo esc_html($cookie['description'] ?? ''); ?></td>
+                  <td data-label="<?php esc_attr_e('Duration', 'kansleri-cookie-consent'); ?>"><?php echo esc_html($cookie['duration'] ?? ''); ?></td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
@@ -101,12 +107,6 @@ class KNCC_Policy_Page {
         </div>
       <?php endforeach; ?>
 
-      <div class="kncc-policy__edit-consent" style="margin-top:1.5rem;">
-        <button type="button" class="kncc-btn kncc-btn--primary kncc-edit-consent-btn"
-                onclick="if(window.knccEditConsent)window.knccEditConsent()">
-          <?php esc_html_e('Edit cookie preferences', 'kansleri-cookie-consent'); ?>
-        </button>
-      </div>
     </div>
     <?php
     return ob_get_clean();

@@ -886,3 +886,11 @@ msgstr "Näyttää linkin, joka avaa evästeasetusikkunan. Käytä alatunnisteis
 #: includes/class-admin.php
 msgid "I made this plugin for free because I got frustrated by the existing cookie consent plugins — too much bloat and useless features. If you like it and want to buy me a coffee, you can do it here:"
 msgstr "Tein tämän lisäosan, koska turhauduin olemassa oleviin evästelisäosiin. Jos pidät siitä ja haluat ostaa minulle kahvin, voit tehdä sen täältä:"
+
+#: includes/class-admin.php
+msgid "Policy page style"
+msgstr "Tietosuojasivun tyyli"
+
+#: includes/class-admin.php
+msgid "Controls the styling of the [kncc_cookie_policy] cookie declaration table."
+msgstr "Määrittää [kncc_cookie_policy]-evästeluettelotaulukon ulkoasun."

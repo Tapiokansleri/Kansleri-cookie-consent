@@ -433,6 +433,11 @@
 
 /* ── Policy page (shortcode) ── */
 
+.kncc-policy {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .kncc-policy__section {
   margin-bottom: 2rem;
 }
@@ -452,6 +457,8 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
+  table-layout: fixed;
+  word-wrap: break-word;
 }
 
 .kncc-policy__table th,
@@ -552,10 +559,24 @@
   color: inherit;
 }
 
+.kncc-policy.kncc-typography--theme .kncc-policy__cat-desc {
+  color: inherit;
+  opacity: 0.7;
+}
+
 .kncc-policy.kncc-typography--theme .kncc-policy__table th {
   background: transparent;
   text-transform: none;
   letter-spacing: normal;
+}
+
+.kncc-policy.kncc-typography--theme .kncc-policy__table th,
+.kncc-policy.kncc-typography--theme .kncc-policy__table td {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.kncc-policy.kncc-typography--theme .kncc-policy__table code {
+  background: rgba(128, 128, 128, 0.15);
 }
 
 /* ── Blocked iframes ── */
@@ -615,7 +636,7 @@
 /* ── Edit consent button on policy page ── */
 
 .kncc-policy__edit-consent {
-  padding-top: 0.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .kncc-edit-consent-btn {
@@ -667,5 +688,48 @@
   .kncc-category__desc {
     padding-left: 0;
     margin-top: 0.3rem;
+  }
+
+  /* Policy table — stack on mobile */
+  .kncc-policy__table,
+  .kncc-policy__table thead,
+  .kncc-policy__table tbody,
+  .kncc-policy__table tr,
+  .kncc-policy__table th,
+  .kncc-policy__table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .kncc-policy__table thead {
+    display: none;
+  }
+
+  .kncc-policy__table tr {
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .kncc-policy__table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #f3f4f6;
+    text-align: left;
+  }
+
+  .kncc-policy__table td:last-child {
+    border-bottom: none;
+  }
+
+  .kncc-policy__table td::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 0.15rem;
   }
 }

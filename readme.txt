@@ -3,7 +3,7 @@ Contributors: kansleri
 Tags: cookie consent, gdpr, google consent mode, cookie banner, privacy
 Requires at least: 6.0
 Tested up to: 6.9
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -27,7 +27,7 @@ Kansleri Cookie Consent is a free, lightweight, and easy-to-use WordPress cookie
 * Built-in cookie scanner that auto-identifies common cookies (Google Analytics, Meta Pixel, WordPress core, and more)
 * AI-assisted cookie descriptions — copy a prompt, paste into an AI tool, import the result
 * **AI-assisted policy page generation** — generate a complete cookie/privacy policy page with one prompt
-* Auto-generated cookie policy page with a dynamic shortcode
+* Auto-generated cookie policy page with a dynamic shortcode (theme or plugin styling)
 * Floating settings button for visitors to update preferences (on by default)
 * `[kncc_cookie_settings]` shortcode — add a cookie settings link anywhere (footer, menu, etc.) with customizable text
 * "Edit cookie preferences" button on the policy page for easy consent withdrawal
@@ -100,6 +100,14 @@ All plugin options (`kncc_settings`, `kncc_cookies`, `kncc_consent_stats`, `kncc
 8. Consent Log — anonymized per-visitor audit trail with CSV export
 
 == Changelog ==
+
+= 1.3.0 =
+* New: Policy page style setting — choose theme or plugin styling for the [kncc_cookie_policy] cookie declaration table
+* Improved: Cookie policy table is now mobile-responsive — stacks into card layout on small screens
+* Improved: Policy page theme mode adapts to dark and light backgrounds
+* Improved: "Edit cookie preferences" button moved to top of policy page
+* Fixed: Daily cron check not re-scheduling after plugin updates
+* Updated: Finnish translations
 
 = 1.2.1 =
 * Fixed: Direct file access protection added to uninstall.php

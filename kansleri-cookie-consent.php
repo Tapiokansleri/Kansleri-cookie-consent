@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Kansleri Cookie Consent
  * Description: Free, no-ads GDPR cookie consent with script blocking, consent logging, Google Consent Mode v2, and AI-assisted setup. Perfect for personal sites and small businesses.
- * Version: 1.2.1
+ * Version: 1.3.0
  * Author: Kansleri.fi
  * Author URI: https://kansleri.fi
  * License: GPLv2 or later
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
   exit;
 }
 
-define('KNCC_VERSION', '1.2.1');
+define('KNCC_VERSION', '1.3.0');
 define('KNCC_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('KNCC_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('KNCC_BASENAME', plugin_basename(__FILE__));
@@ -34,6 +34,12 @@ require_once KNCC_PLUGIN_DIR . 'includes/class-stats.php';
 require_once KNCC_PLUGIN_DIR . 'includes/class-script-blocker.php';
 require_once KNCC_PLUGIN_DIR . 'includes/class-consent-log.php';
 
+// Ensure daily cron is always scheduled (survives updates without reactivation).
+add_action('init', function () {
+  if (!wp_next_scheduled('kncc_daily_cookie_check')) {
+    wp_schedule_event(time(), 'daily', 'kncc_daily_cookie_check');
+  }
+});
 
 if (!function_exists('kncc_get_default_settings')) :
 function kncc_get_default_settings() {
